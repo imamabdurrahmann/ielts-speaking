@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#6366F1"/>
+      <stop offset="100%" style="stop-color:#4F46E5"/>
+    </linearGradient>
+  </defs>
+  <!-- Full-bleed background for maskable icons -->
+  <rect width="512" height="512" fill="url(#bgGrad)"/>
+  <!-- Safe area (center 80%) for icon content -->
+  <!-- Microphone icon representing speaking -->
+  <circle cx="256" cy="256" r="100" fill="none" stroke="white" stroke-width="8" opacity="0.3"/>
+  <path d="M256 112 C316 112 360 156 360 216 L360 296 C360 356 316 400 256 400 C196 400 152 356 152 296 L152 216 C152 156 196 112 256 112 Z" fill="white"/>
+  <path d="M196 216 L196 296 C196 324 224 352 256 352 C288 352 316 324 316 296 L316 216" fill="none" stroke="#4F46E5" stroke-width="10" stroke-linecap="round"/>
+  <rect x="196" y="280" width="120" height="72" rx="8" fill="white"/>
+  <line x1="256" y1="352" x2="256" y2="408" stroke="white" stroke-width="10" stroke-linecap="round"/>
+  <line x1="212" y1="408" x2="300" y2="408" stroke="white" stroke-width="10" stroke-linecap="round"/>
+  <!-- Sound waves -->
+  <path d="M110 256 Q128 234 128 256 Q128 278 110 256" fill="none" stroke="white" stroke-width="6" stroke-linecap="round" opacity="0.6"/>
+  <path d="M402 256 Q384 234 384 256 Q384 278 402 256" fill="none" stroke="white" stroke-width="6" stroke-linecap="round" opacity="0.6"/>
+</svg>

@@ -1469,6 +1469,649 @@ const MODEL_ANSWERS = {
       'Tell a personal story about why this song matters to you',
       'Use descriptive language about sounds and emotions'
     ]
+  },
+
+  // Card: An Interesting House or Apartment You Have Visited (p2-03)
+  'p2-03': {
+    answer: '<p>One of the most fascinating houses I\'ve ever visited was my uncle\'s <mark>eco-friendly home</mark> in the countryside about two hours from where I live. He built it himself over a period of three years, and I remember visiting shortly after he finished it when I was about fifteen years old.</p><p>The house is absolutely <mark>stunning</mark> — a two-story structure with large <mark>floor-to-ceiling windows</mark> that let in natural light throughout the day. What makes it unique is that it\'s built largely from <mark>sustainable materials</mark> like reclaimed wood and bamboo. The roof is covered with <mark>solar panels</mark> that provide most of the electricity, and there\'s a rainwater collection system for gardening. The interior has an <mark>open-plan design</mark> with a cozy fireplace in the living room and a <mark>sprawling garden</mark> at the back.</p><p>My uncle lives there with his wife and two dogs. They\'ve created a <mark>serene atmosphere</mark> with houseplants everywhere and <mark>handcrafted furniture</mark> they\'ve collected from their travels around Asia.</p><p>I found this house so interesting because it showed me that <mark>modern living and environmental responsibility</mark> can go hand in hand. It completely changed my perspective on what a home could be. Watching my uncle give tours to visitors and explain his <mark>green building techniques</mark> was truly <mark>eye-opening</mark>. It\'s safe to say this experience sparked my interest in <mark>sustainable architecture</mark>.</p>',
+    vocab: [
+      { word: 'eco-friendly home', meaning: 'a house designed to minimize environmental impact' },
+      { word: 'stunning', meaning: 'extremely impressive or beautiful' },
+      { word: 'floor-to-ceiling windows', meaning: 'windows that extend from floor to ceiling' },
+      { word: 'sustainable materials', meaning: 'materials that can be replenished and don\'t harm the environment' },
+      { word: 'solar panels', meaning: 'devices that convert sunlight into electricity' },
+      { word: 'open-plan design', meaning: 'a layout where rooms flow into each other without walls' },
+      { word: 'sprawling garden', meaning: 'a large, extensive garden area' },
+      { word: 'serene atmosphere', meaning: 'a calm, peaceful environment' },
+      { word: 'green building techniques', meaning: 'methods of construction that are environmentally friendly' },
+      { word: 'eye-opening', meaning: 'providing new knowledge or understanding' }
+    ],
+    tips: [
+      'Give specific details about what makes the house unique',
+      'Describe the appearance, materials, and special features',
+      'Explain who lives there and what the atmosphere is like',
+      'Share why this particular house stood out to you'
+    ]
+  },
+
+  // Card: A Place You Visited That Has Been Affected by Pollution (p2-04)
+  'p2-04': {
+    answer: '<p>The place that immediately comes to mind is <mark>Loktak Lake</mark> in my home state of Manipur, which I visited about three years ago. This lake was once known for its <mark>breathtaking natural beauty</mark> and was a crucial source of livelihood for local fishermen, but the pollution I witnessed there was truly <mark>heartbreaking</mark>.</p><p>I went there with my family during the winter months. The first thing I noticed was the <mark>thick layer of trash</mark> floating on parts of the water — plastic bottles, bags, and other <mark>debris that had accumulated</mark> over years. The water had a <mark>muddy, murky appearance</mark> and there was an unpleasant smell in certain areas.</p><p>The pollution here is mainly caused by <mark>industrial discharge</mark> from nearby factories, <mark>agricultural runoff</mark> containing pesticides, and sewage from nearby villages. There\'s also an invasive plant species called <mark>phumdis</mark> — floating islands of vegetation — that have grown extensively due to water pollution, disrupting the <mark>delicate ecosystem</mark>.</p><p>What really affected me was seeing how this had impacted the local communities. Fishermen who once <mark>relied on the lake</mark> for their daily catch now struggle to find enough fish. Migratory birds that used to visit have largely <mark>disappeared</mark>. The <mark>environmental degradation</mark> has not only harmed wildlife but also the traditional way of life for thousands of people. It was a powerful reminder of how <mark>human activities can devastate</mark> natural environments.</p>',
+    vocab: [
+      { word: 'breathtaking natural beauty', meaning: 'incredibly stunning scenery' },
+      { word: 'heartbreaking', meaning: 'causing great sadness or disappointment' },
+      { word: 'thick layer of trash', meaning: 'a substantial accumulation of waste' },
+      { word: 'debris that had accumulated', meaning: 'waste that has gathered over time' },
+      { word: 'muddy, murky appearance', meaning: 'cloudy and unclear water quality' },
+      { word: 'industrial discharge', meaning: 'waste materials released by factories' },
+      { word: 'agricultural runoff', meaning: 'water carrying pollutants from farms' },
+      { word: 'delicate ecosystem', meaning: 'a balanced environment that is easily disrupted' },
+      { word: 'relied on the lake', meaning: 'depended on the lake for survival' },
+      { word: 'environmental degradation', meaning: 'the decline in environmental quality' }
+    ],
+    tips: [
+      'Name the specific place and describe its pollution in detail',
+      'Explain what type of pollution exists and how severe it is',
+      'Describe the environmental impact on wildlife, plants, or people',
+      'Share your personal reaction to seeing the pollution'
+    ]
+  },
+
+  // Card: A Time When You Received Money as a Gift (p2-05)
+  'p2-05': {
+    answer: '<p>A memorable time when I received money as a gift was during my <mark>high school graduation ceremony</mark> five years ago. My grandparents, who had traveled from our hometown to attend the ceremony, presented me with an <mark>envelope containing a substantial amount of money</mark>.</p><p>My grandmother, who\'s always been <mark>incredibly generous</mark>, handed it to me with a warm smile and said it was to help me <mark>pursue my dreams</mark>. The amount was around 500 dollars — a significant sum by any measure. They had been saving for months to give me this gift, which made it even more <mark>meaningful and touching</mark>.</p><p>Initially, I felt a bit <mark>conflicted</mark>. I knew my grandparents weren\'t wealthy, and the money represented genuine <mark>sacrifice and hard work</mark> on their part. However, they insisted that I accept it as a token of their pride in my <mark>academic achievements</mark>.</p><p>I decided to use the money <mark>strategically</mark>. About half went toward buying a laptop for my university studies, which proved <mark>invaluable for my coursework</mark>. The rest I put into a savings account that I\'ve since used for various <mark>educational opportunities</mark> like language courses and certifications.</p><p>Looking back, receiving that money was about so much more than the <mark>financial value</mark>. It was a profound expression of <mark>love and belief in my potential</mark>. Every time I use that laptop, I\'m reminded of my grandparents\' <mark>unwavering support</mark> and the importance of working hard to honor their faith in me.</p>',
+    vocab: [
+      { word: 'high school graduation ceremony', meaning: 'the event marking the completion of secondary education' },
+      { word: 'incredibly generous', meaning: 'giving freely and abundantly' },
+      { word: 'pursue my dreams', meaning: 'work toward achieving one\'s aspirations' },
+      { word: 'meaningful and touching', meaning: 'deeply significant and emotionally moving' },
+      { word: 'conflicted', meaning: 'having mixed feelings or uncertainty' },
+      { word: 'sacrifice and hard work', meaning: 'giving up something for a goal and effort put in' },
+      { word: 'academic achievements', meaning: 'success in educational pursuits' },
+      { word: 'invaluable for my coursework', meaning: 'extremely useful for my studies' },
+      { word: 'unwavering support', meaning: 'constant and firm encouragement' }
+    ],
+    tips: [
+      'Set the scene — explain when, where, and who gave you the money',
+      'Describe how much you received and the context of the gift',
+      'Share what you did with the money and why',
+      'Express your feelings honestly about receiving money as a gift'
+    ]
+  },
+
+  // Card: A Film That Made You Laugh a Lot (p2-06)
+  'p2-06': {
+    answer: '<p>The film that had me <mark>laughing uncontrollably</mark> more than any other is "Superbad" from 2007. I watched it with my college roommates during our <mark>first semester orientation week</mark>, and it quickly became our <mark>inside joke reference</mark> for everything.</p><p>It\'s a <mark>coming-of-age comedy</mark> starring Michael Cera, Jonah Hill, and Christopher Mintz-Plasse as three high school friends trying to <mark>make the most of their final weeks</mark> before graduation. The plot revolves around their attempts to <mark>throw the ultimate party</mark> and each character\'s awkward journey toward adulthood.</p><p>What made it so <mark>hysterically funny</mark> was the <mark>witty dialogue</mark> and the characters\' <mark>relatable awkwardness</mark>. Jonah Hill\'s character\'s <mark>relentless obsession</mark> with getting drunk before graduation and his <mark>botched attempts to look cool</mark> around his crush had us in tears. There\'s also a <mark>legendary scene</mark> involving a fake ID at a liquor store that still makes me chuckle whenever I think about it.</p><p>But beyond the laughs, what I really appreciated was how the film captured the <mark>excitement and anxiety</mark> of that <mark>transitional period</mark> in life. Watching it helped me process my own feelings about starting university. To this day, whenever I need a <mark>mood boost</mark>, I put on "Superbad" and it never fails to <mark>brighten my day</mark>.</p>',
+    vocab: [
+      { word: 'laughing uncontrollably', meaning: 'laughing without being able to stop' },
+      { word: 'first semester orientation week', meaning: 'the introductory period at the start of university' },
+      { word: 'inside joke reference', meaning: 'something funny that only insiders understand' },
+      { word: 'coming-of-age comedy', meaning: 'a humorous film about growing up' },
+      { word: 'make the most of their final weeks', meaning: 'enjoy the last time before a major change' },
+      { word: 'relentless obsession', meaning: 'continuous and intense focus on something' },
+      { word: 'botched attempts', meaning: 'failed tries at doing something' },
+      { word: 'legendary scene', meaning: 'a famous, memorable moment in a film' },
+      { word: 'relatable awkwardness', meaning: 'embarrassing situations that audiences understand' },
+      { word: 'mood boost', meaning: 'an improvement in one\'s emotional state' }
+    ],
+    tips: [
+      'Name the film and describe the genre and plot briefly',
+      'Give specific examples of scenes that made you laugh',
+      'Explain why the comedy worked — was it the dialogue, situations, or acting?',
+      'Share the context of when you watched it and with whom'
+    ]
+  },
+
+  // Card: A Time You Needed to Search for Information (p2-08)
+  'p2-08': {
+    answer: '<p>A time when I needed to search for information was when I was <mark>applying for graduate school</mark> about two years ago. I had to gather a significant amount of <mark>research and documentation</mark> to make sure my applications were as strong as possible.</p><p>The information I needed was quite varied. First, I had to research <mark>different universities and programs</mark> to find which ones aligned with my career goals. I also needed to understand the <mark>application requirements</mark> — things like minimum GPA scores, required test scores, <mark>recommendation letters</mark>, and application deadlines. Additionally, I was looking for information about <mark>scholarships and funding opportunities</mark> that I might be eligible for.</p><p>I primarily used the internet to search for this information. I started by <mark>browsing university websites</mark> and then moved on to <mark>student forums and social media groups</mark> where past and current students shared their experiences. I also reached out to <mark>academic advisors</mark> and professors for guidance. The most valuable resource turned out to be connecting with <mark>alumni</mark> who had already gone through the application process.</p><p>This research was absolutely <mark>crucial for my future</mark>. Without it, I would have missed important deadlines and been unaware of certain <mark>scholarship opportunities</mark> that have significantly reduced my tuition costs. The process also helped me <mark>clarify my career goals</mark> and make more informed decisions about which programs would best suit my needs.</p>',
+    vocab: [
+      { word: 'applying for graduate school', meaning: 'seeking admission to a university for advanced studies' },
+      { word: 'research and documentation', meaning: 'collecting information and evidence' },
+      { word: 'different universities and programs', meaning: 'various higher education institutions and courses' },
+      { word: 'application requirements', meaning: 'the conditions needed to apply' },
+      { word: 'recommendation letters', meaning: 'letters written by others supporting an application' },
+      { word: 'scholarships and funding opportunities', meaning: 'financial aid for education' },
+      { word: 'browsing university websites', meaning: 'exploring official university pages online' },
+      { word: 'student forums and social media groups', meaning: 'online communities where students share information' },
+      { word: 'alumni', meaning: 'former students of an institution' },
+      { word: 'crucial for my future', meaning: 'extremely important for what lies ahead' }
+    ],
+    tips: [
+      'Explain the specific situation that required research',
+      'Describe what type of information you needed and why',
+      'Detail where and how you searched for the information',
+      'Share how the information you found helped you'
+    ]
+  },
+
+  // Card: A Time You Spent with a Young Child (p2-09)
+  'p2-09': {
+    answer: '<p>One of the most delightful experiences I\'ve had was spending a day with my <mark>younger cousin Aisha</mark> when she was about five years old. This happened about three years ago during a <mark>family reunion</mark> at my grandmother\'s house in our hometown.</p><p>My aunt asked me to look after Aisha while the adults prepared for the reunion celebrations. We started by <mark>exploring the garden</mark> together, where she was absolutely <mark>fascinated by everything</mark> — from the butterflies fluttering around the flowers to the ants carrying food crumbs. I patiently answered her endless questions about nature, which seemed to <mark>amaze and excite her</mark>.</p><p>After that, we moved indoors and I taught her how to <mark>fold paper airplanes</mark>. This proved to be a brilliant decision because she was completely <mark>absorbed in the activity</mark>. We spent at least an hour folding different designs and then testing them in the hallway. Her <mark>infectious laughter</mark> and genuine <mark>enthusiasm</mark> when a plane flew particularly well was absolutely heartwarming.</p><p>What I took away from this experience was how <mark>refreshing and enlightening</mark> it can be to see the world through a child\'s eyes. Their <mark>curiosity and wonder</mark> about things we often take for granted is truly <mark>inspiring</mark>. It reminded me to <mark>appreciate the simple things</mark> in life and to never lose that sense of <mark>innocent curiosity</mark> that children naturally possess.</p>',
+    vocab: [
+      { word: 'younger cousin Aisha', meaning: 'a relative who is younger than you' },
+      { word: 'family reunion', meaning: 'a gathering of extended family members' },
+      { word: 'fascinated by everything', meaning: 'extremely interested in many things' },
+      { word: 'amaze and excite her', meaning: 'cause strong feelings of wonder and enthusiasm' },
+      { word: 'absorbed in the activity', meaning: 'completely focused on what they are doing' },
+      { word: 'infectious laughter', meaning: 'laughter that makes others want to laugh too' },
+      { word: 'enthusiasm', meaning: 'eager and keen interest' },
+      { word: 'refreshing and enlightening', meaning: 'providing new energy and understanding' },
+      { word: 'curiosity and wonder', meaning: 'a strong desire to learn and be amazed' },
+      { word: 'innocent curiosity', meaning: 'natural desire to explore without preconceptions' }
+    ],
+    tips: [
+      'Explain who the child was and your relationship to them',
+      'Describe specific activities you did together',
+      'Include the child\'s reactions and behaviors to make it vivid',
+      'Share what you learned or how the experience affected you'
+    ]
+  },
+
+  // Card: A Skill You Took a Long Time to Master (p2-10)
+  'p2-10': {
+    answer: '<p>The skill that took me the longest to master was <mark>playing the piano</mark>. It took me approximately <mark>six years of consistent practice</mark> before I could truly call myself a competent pianist, and honestly, I\'m still learning every day.</p><p>I started learning when I was eight years old at the insistence of my parents. My initial years were quite <mark>frustrating and challenging</mark>. I struggled with <mark>reading sheet music</mark>, coordinating both hands simultaneously, and developing the <mark>finger strength and dexterity</mark> required for more advanced pieces. There were many times when I felt like giving up, especially when I compared myself to other students who seemed to <mark>progress much faster</mark>.</p><p>What transformed my learning experience was when I found a <mark>patient and inspiring teacher</mark> who changed my approach to practice. Instead of just <mark>mechanical repetition</mark>, she taught me to <mark>understand the emotional context</mark> behind the music. She also introduced me to the <mark>Pomodoro technique</mark> — practicing in focused 25-minute sessions with short breaks — which dramatically improved my <mark>concentration and efficiency</mark>.</p><p>I decided to learn piano primarily because my mother is a <mark>music lover</mark> and dreamed of having a child who could play beautifully. But over time, it became my own passion. Mastering the piano has taught me <mark>discipline, patience, and the value of persistence</mark>. It\'s also become my <mark>go-to way to unwind</mark> after a stressful day, and I\'ve even performed at a few local concerts, which was incredibly <mark>fulfilling</mark>.</p>',
+    vocab: [
+      { word: 'playing the piano', meaning: 'the skill of producing music on a piano instrument' },
+      { word: 'frustrating and challenging', meaning: 'causing difficulty and annoyance' },
+      { word: 'reading sheet music', meaning: 'interpreting written musical notation' },
+      { word: 'finger strength and dexterity', meaning: 'physical ability and skill of the fingers' },
+      { word: 'patient and inspiring teacher', meaning: 'a tutor who is calm and motivating' },
+      { word: 'mechanical repetition', meaning: 'mindless, routine practice without understanding' },
+      { word: 'emotional context', meaning: 'the feelings and mood that music expresses' },
+      { word: 'concentration and efficiency', meaning: 'focus and productivity during practice' },
+      { word: 'music lover', meaning: 'someone who has a deep appreciation for music' },
+      { word: 'go-to way to unwind', meaning: 'the usual method of relaxing' }
+    ],
+    tips: [
+      'Name the specific skill and explain why it took long to master',
+      'Describe the learning process and challenges you faced',
+      'Share what helped you finally make progress',
+      'Explain why you decided to learn this skill initially'
+    ]
+  },
+
+  // Card: Being Friendly to Someone You Didnt Like (p2-11)
+  'p2-11': {
+    answer: '<p>There was a time when I had to be incredibly <mark>diplomatic and friendly</mark> toward a colleague I genuinely didn\'t get along with. This happened during my <mark>internship at a marketing firm</mark> about two years ago.</p><p>The person in question was someone named Raj, who worked in the same department as me. I didn\'t like him because he had a <mark>condescending attitude</mark> and would often <mark>take credit for other people\'s work</mark>. He also had a habit of <mark>interrupting others</mark> during meetings and being generally dismissive of junior staff members like myself.</p><p>The reason I had to be friendly despite my feelings was that we were assigned to <mark>work together on a major project</mark>. Our manager emphasized the importance of <mark>teamwork and professional conduct</mark>, and frankly, I couldn\'t afford to damage my reputation by being <mark>unprofessional</mark>. Additionally, Raj was <mark>well-connected</mark> in the company, and being on his bad side could have <mark>negative repercussions</mark> for my career.</p><p>I have to admit, it was genuinely <mark>challenging and draining</mark> to put on a friendly face. I had to constantly <mark>remind myself to stay calm</mark> and respond to his provocations with patience. However, I did learn a lot from the experience — it taught me about <mark>emotional intelligence and the ability to separate personal feelings from professional situations</mark>. In the end, we delivered the project successfully, and I believe the experience made me <mark>more resilient and mature</mark>.</p>',
+    vocab: [
+      { word: 'diplomatic and friendly', meaning: 'tactful and pleasant in social interactions' },
+      { word: 'internship at a marketing firm', meaning: 'a temporary work position at a marketing company' },
+      { word: 'condescending attitude', meaning: 'a manner that suggests one is superior to others' },
+      { word: 'take credit for other people\'s work', meaning: 'claim ownership of achievements made by others' },
+      { word: 'interrupting others', meaning: 'not allowing others to finish speaking' },
+      { word: 'teamwork and professional conduct', meaning: 'working well together and behaving appropriately' },
+      { word: 'unprofessional', meaning: 'not meeting the standards of a profession' },
+      { word: 'well-connected', meaning: 'having useful relationships with important people' },
+      { word: 'negative repercussions', meaning: 'unfavorable consequences' },
+      { word: 'emotional intelligence', meaning: 'the ability to understand and manage emotions' }
+    ],
+    tips: [
+      'Explain who the person was and why you didn\'t like them',
+      'Describe why you had to be polite despite your feelings',
+      'Share specific strategies you used to maintain professionalism',
+      'Reflect on how the experience affected you'
+    ]
+  },
+
+  // Card: A Foreign Country Culture You Would Like to Learn More About (p2-12)
+  'p2-12': {
+    answer: '<p>The foreign culture I\'d love to learn more about is <mark>Japanese culture</mark>, particularly its <mark>traditional arts and philosophy</mark>. This fascination began when I watched a documentary about <mark>Japanese gardens</mark> about four years ago, and it has only grown stronger since then.</p><p>I first learned about Japanese culture through various <mark>media channels</mark> — films like "Memoirs of a Geisha," documentaries on NHK, and of course, content on social media. I\'ve read a few books on the subject, including <mark>Haruki Murakami\'s novels</mark>, which give fascinating glimpses into modern Japanese life. I\'ve also followed several <mark>YouTube channels</mark> run by people living in Japan who share daily life insights.</p><p>What draws me to this culture is the concept of <mark>"wabi-sabi"</mark> — the idea of finding beauty in imperfection and transience. I\'m also fascinated by practices like <mark>tea ceremony, flower arrangement, and calligraphy</mark>, which emphasize <mark>mindfulness and attention to detail</mark>. The Japanese approach to <mark>craftsmanship and quality</mark>, where artisans spend decades perfecting a single skill, is something I find deeply inspiring.</p><p>In the future, I\'d love to learn the <mark>Japanese language</mark>, particularly so I can understand traditional literature in its original form. I also want to study <mark>Ikebana</mark>, the art of flower arrangement, and perhaps even visit Japan to experience the <mark>cherry blossom season</mark> firsthand. This culture represents a <mark>unique blend of tradition and modernity</mark> that I find endlessly fascinating.</p>',
+    vocab: [
+      { word: 'Japanese culture', meaning: 'the customs, arts, and traditions of Japan' },
+      { word: 'traditional arts and philosophy', meaning: 'classical creative practices and ways of thinking' },
+      { word: 'media channels', meaning: 'sources of information like TV, internet, and print' },
+      { word: 'mindfulness and attention to detail', meaning: 'awareness and focus on small things' },
+      { word: 'craftsmanship and quality', meaning: 'skill in making things and maintaining high standards' },
+      { word: 'wabi-sabi', meaning: 'a worldview centered on accepting imperfection and transience' },
+      { word: 'tea ceremony', meaning: 'a traditional Japanese ritual of preparing and serving tea' },
+      { word: 'Ikebana', meaning: 'the Japanese art of flower arrangement' },
+      { word: 'cherry blossom season', meaning: 'the annual period when cherry trees flower' },
+      { word: 'unique blend of tradition and modernity', meaning: 'an interesting combination of old and new' }
+    ],
+    tips: [
+      'Name the specific country or culture you want to learn about',
+      'Explain how you first learned about it and what you know so far',
+      'Describe what specifically interests you and why',
+      'Share what specific things you\'d like to learn in the future'
+    ]
+  },
+
+  // Card: A Time You Had to Be Polite (p2-13)
+  'p2-13': {
+    answer: '<p>A situation that required me to be extremely <mark>diplomatic and courteous</mark> was when I had to <mark>interview for my first professional job</mark> two years ago. The interviewer was a senior executive, and the entire atmosphere was quite <mark>intimidating and formal</mark>.</p><p>I was seated in a large office with <mark>panoramic windows</mark> overlooking the city. The interviewer, Mr. Sharma, was a <mark>well-respected figure</mark> in the industry with decades of experience. He had a reputation for being <mark>strict and demanding</mark>, and I could sense that he was evaluating not just my qualifications but also my <mark>character and demeanor</mark>.</p><p>Throughout the interview, I had to maintain a <mark>polite and respectful</mark> demeanor even when he asked challenging questions or put pressure on me. When he <mark>challenged my lack of experience</mark>, I had to politely explain my perspective without sounding <mark>defensive or arrogant</mark>. I made sure to use respectful language, maintain <mark>appropriate eye contact</mark>, and listen attentively before responding.</p><p>Honestly, it was <mark>nerve-wracking</mark>. Every word felt consequential, and I had to carefully consider how to <mark>phrase my responses</mark>. However, I\'m glad I handled it the way I did because the experience taught me the value of <mark>composure and grace under pressure</mark>. I did get the job, and Mr. Sharma later told me that my <mark>professional attitude</mark> during the interview had made a strong impression. This experience showed me that <mark>politeness and professionalism</mark> can genuinely open doors.</p>',
+    vocab: [
+      { word: 'diplomatic and courteous', meaning: 'tactful and polite in handling situations' },
+      { word: 'interview for my first professional job', meaning: 'a meeting to determine if I would be hired' },
+      { word: 'intimidating and formal', meaning: 'causing fear and being very proper and official' },
+      { word: 'well-respected figure', meaning: 'someone who is highly regarded and admired' },
+      { word: 'strict and demanding', meaning: 'having high standards and expecting excellence' },
+      { word: 'challenged my lack of experience', meaning: 'questioned my insufficient background' },
+      { word: 'defensive or arrogant', meaning: 'acting protectively or showing superiority' },
+      { word: 'composure and grace under pressure', meaning: 'calmness and dignity in difficult situations' },
+      { word: 'professional attitude', meaning: 'a behavior that shows skill and seriousness' },
+      { word: 'politeness and professionalism', meaning: 'courtesy and proper business conduct' }
+    ],
+    tips: [
+      'Set the scene — explain when and where this happened',
+      'Describe who you were with and why politeness was required',
+      'Share specific examples of how you demonstrated politeness',
+      'Reflect on the outcome and how you felt about it'
+    ]
+  },
+
+  // Card: An Adventure You Would Like to Go On (p2-14)
+  'p2-14': {
+    answer: '<p>The adventure I\'ve always dreamed of going on is a <mark>trekking expedition through the Himalayas</mark>, specifically the famous <mark>Annapurna Circuit trail</mark> in Nepal. It\'s something that has been at the top of my bucket list for years.</p><p>The Annapurna Circuit is approximately <mark>160 kilometers long</mark> and takes most trekkers about two to three weeks to complete. It passes through <mark>breathtaking mountain landscapes</mark>, traditional villages, and <mark>diverse ecosystems</mark> ranging from subtropical forests to alpine meadows. The trail also goes through <mark>high mountain passes</mark> including Thorong La at 5,416 meters, which offers <mark>unforgettable panoramic views</mark>.</p><p>If I were to go on this adventure, I would definitely go with my <mark>close friend Deepak</mark>, who is also an <mark>enthusiastic hiker and outdoor enthusiast</mark>. We\'ve been planning this trip together for the past year and have already started <mark>preparing physically</mark> by going on regular hikes and building our stamina.</p><p>The reason I\'m so drawn to this adventure is that it combines <mark>physical challenge, natural beauty, and cultural immersion</mark> in a way that few other experiences can match. I\'ve always felt <mark>drawn to mountains</mark> and the sense of <mark>accomplishment that comes from pushing your limits</mark>. Completing this trek would be a <mark>life-defining achievement</mark> for me, and I hope to make it happen within the next few years.</p>',
+    vocab: [
+      { word: 'trekking expedition', meaning: 'a long journey on foot through wild country' },
+      { word: 'Annapurna Circuit trail', meaning: 'a famous long-distance hiking route in Nepal' },
+      { word: 'breathtaking mountain landscapes', meaning: 'incredibly beautiful mountain scenery' },
+      { word: 'diverse ecosystems', meaning: 'different natural environments with various wildlife' },
+      { word: 'high mountain passes', meaning: 'routes through very high mountains' },
+      { word: 'unforgettable panoramic views', meaning: 'amazing scenery that stretches across the horizon' },
+      { word: 'outdoor enthusiast', meaning: 'someone who loves outdoor activities' },
+      { word: 'building our stamina', meaning: 'increasing physical endurance through training' },
+      { word: 'pushing your limits', meaning: 'testing the boundaries of your ability' },
+      { word: 'life-defining achievement', meaning: 'an accomplishment that changes your life' }
+    ],
+    tips: [
+      'Describe the specific adventure you want to go on',
+      'Give details about the location and what it involves',
+      'Explain who you would go with and why you want to do it',
+      'Share why this adventure appeals to you personally'
+    ]
+  },
+
+  // Card: A Time When You Felt Bored (p2-15)
+  'p2-15': {
+    answer: '<p>The most <mark>intensely boring experience</mark> I\'ve ever had was during a <mark>six-hour train journey</mark> across my country about a year ago. I was traveling alone to visit a relative, and the train was delayed significantly due to <mark>technical issues</mark>.</p><p>It started when the train came to a <mark>complete standstill</mark> in the middle of nowhere for about three hours. There was no air conditioning working properly, the <mark>seats were uncomfortable</mark>, and my phone had almost no signal. To make matters worse, I had forgotten to <mark>bring any entertainment</mark> — no books, no music, nothing.</p><p>I tried to make the most of it by <mark>staring out the window</mark> at the flat, unchanging landscape, but after the first hour, there was really nothing left to look at. I started <mark>counting the seconds</mark> on my watch just to have something to do. I even took a <mark>nap out of sheer boredom</mark>, only to wake up and find the train still not moving.</p><p>Initially, I felt <mark>frustrated and restless</mark>. Time seemed to move incredibly slowly, and every minute felt like an hour. Eventually, I struck up a conversation with an <mark>elderly gentleman</mark> sitting across from me, and we spent the remaining time <mark>sharing stories about our lives</mark>. This unexpected human connection actually made the experience <mark>somewhat worthwhile</mark>, and I learned some valuable lessons about <mark>patience and finding silver linings</mark> in unpleasant situations.</p>',
+    vocab: [
+      { word: 'intensely boring experience', meaning: 'a situation that caused extreme tedium' },
+      { word: 'six-hour train journey', meaning: 'a long train ride lasting six hours' },
+      { word: 'complete standstill', meaning: 'a complete stop with no movement' },
+      { word: 'seats were uncomfortable', meaning: 'the seating was not pleasant or relaxing' },
+      { word: 'bring any entertainment', meaning: 'failed to prepare things to pass the time' },
+      { word: 'counting the seconds', meaning: 'watching time pass very slowly' },
+      { word: 'frustrated and restless', meaning: 'annoyed and unable to stay still' },
+      { word: 'elderly gentleman', meaning: 'an older man' },
+      { word: 'silver linings', meaning: 'positive aspects of an otherwise negative situation' },
+      { word: 'patience', meaning: 'the ability to wait calmly' }
+    ],
+    tips: [
+      'Set the scene — explain when and where you were',
+      'Describe who was with you and what you were doing',
+      'Explain what made you feel bored and how you tried to cope',
+      'Share how you eventually dealt with the situation'
+    ]
+  },
+
+  // Card: An Article You Read About Health (p2-16)
+  'p2-16': {
+    answer: '<p>An article about health that left a <mark>lasting impression</mark> on me was a <mark>research piece about the effects of sleep deprivation</mark> on cognitive function and overall health. I read it about a year ago in a <mark>popular science magazine</mark> while waiting for an appointment.</p><p>The article discussed how <mark>chronic sleep deficiency</mark> — consistently getting less than the recommended 7-9 hours — can have <mark>devastating effects</mark> on the brain and body. It cited numerous studies showing links between poor sleep and <mark>increased risk of heart disease, obesity, diabetes, and mental health issues</mark>. The article also explained how sleep deprivation <mark>impairs decision-making, memory, and concentration</mark> — effects that accumulate over time.</p><p>I read this article because I had been experiencing <mark>persistent fatigue and difficulty concentrating</mark> and wanted to understand why. I found the research particularly <mark>eye-opening and alarming</mark>. One statistic that stuck with me was that after just one night of getting less than 6 hours of sleep, <mark>cognitive performance drops to the equivalent of being legally drunk</mark>.</p><p>What I learned from this article has <mark>completely transformed my habits</mark>. I now prioritize sleep much more seriously and have established a <mark>consistent bedtime routine</mark>. I\'ve also become an advocate for sleep health, frequently <mark>sharing this information with friends and family</mark> who struggle with similar issues. This single article has genuinely helped me <mark>improve my quality of life</mark> significantly.</p>',
+    vocab: [
+      { word: 'lasting impression', meaning: 'a strong and enduring effect' },
+      { word: 'research piece', meaning: 'an article based on studies and evidence' },
+      { word: 'effects of sleep deprivation', meaning: 'the negative impacts of not getting enough sleep' },
+      { word: 'popular science magazine', meaning: 'a widely read publication about scientific topics' },
+      { word: 'chronic sleep deficiency', meaning: 'long-term lack of sufficient sleep' },
+      { word: 'devastating effects', meaning: 'extremely harmful consequences' },
+      { word: 'cognitive performance', meaning: 'mental abilities like thinking and memory' },
+      { word: 'persistent fatigue', meaning: 'ongoing tiredness that doesn\'t go away' },
+      { word: 'eye-opening and alarming', meaning: 'shocking and revealing something surprising' },
+      { word: 'consistent bedtime routine', meaning: 'a regular pattern of getting ready for sleep' }
+    ],
+    tips: [
+      'Name the article and explain what topic it covered',
+      'Describe where and why you read it',
+      'Share the most interesting or surprising information you learned',
+      'Explain how the article affected your behavior or thinking'
+    ]
+  },
+
+  // Card: A Piece of Local Food That You Like (p2-18)
+  'p2-18': {
+    answer: '<p>One of my all-time favorite local dishes is <mark>"Biryani"</mark> — a fragrant, flavorful <mark>spiced rice dish</mark> cooked with meat, spices, and herbs. It\'s deeply <mark>rooted in our culinary tradition</mark> and is often served during celebrations and special occasions.</p><p>The place where I usually enjoy this dish is a <mark>family-owned restaurant</mark> near my home that has been operating for over forty years. The restaurant has a <mark>warm, inviting atmosphere</mark> with traditional decor, and the owners maintain <mark>authentic recipes passed down through generations</mark>. Every time I visit, I can smell the <mark>aroma of slow-cooked spices</mark> wafting from the kitchen.</p><p>I first tried Biryani when I was about eight years old at my grandmother\'s house during a <mark>family wedding celebration</mark>. My grandmother was an <mark>exceptional cook</mark>, and she had prepared a massive pot herself. From that very first bite, I was completely <mark>hooked on the complex blend of flavors</mark> — the tender meat, the aromatic rice, the perfect balance of spices.</p><p>What I love most about Biryani is how it <mark>represents our culture\'s love for food</mark> and hospitality. It\'s not just a dish — it\'s a <mark>sensory experience</mark> that brings back memories of <mark>family gatherings and festive celebrations</mark>. Every bite tells a story of <mark>centuries-old traditions</mark> and the artistry of Indian cooking. It\'s truly a <mark>culinary masterpiece</mark> that I will never tire of.</p>',
+    vocab: [
+      { word: 'Biryani', meaning: 'a spiced rice dish with meat, popular in South Asia' },
+      { word: 'spiced rice dish', meaning: 'rice cooked with various spices and often meat' },
+      { word: 'rooted in our culinary tradition', meaning: 'deeply connected to our food culture' },
+      { word: 'family-owned restaurant', meaning: 'a restaurant owned and run by a family' },
+      { word: 'authentic recipes passed down', meaning: 'original cooking methods inherited from ancestors' },
+      { word: 'slow-cooked spices', meaning: 'spices prepared over a long time with low heat' },
+      { word: 'hooked on the complex blend of flavors', meaning: 'very fond of the intricate taste combination' },
+      { word: 'sensory experience', meaning: 'something that appeals to the senses' },
+      { word: 'culinary masterpiece', meaning: 'an outstanding example of cooking' },
+      { word: 'centuries-old traditions', meaning: 'customs that have existed for hundreds of years' }
+    ],
+    tips: [
+      'Name the specific dish and describe what it looks and tastes like',
+      'Explain where you usually eat it and why that place is special',
+      'Share when you first tried it and what made that moment memorable',
+      'Describe why you love this food — its taste, cultural significance, or memories'
+    ]
+  },
+
+  // Card: Teaching Someone Something New (p2-19)
+  'p2-19': {
+    answer: '<p>A memorable experience of teaching someone something new was when I <mark>taught my mother how to use a smartphone</mark> about three years ago. She had always been <mark>intimidated by technology</mark> and had relied on her basic phone for years.</p><p>The teaching happened at my parents\' home over a <mark>weekend</mark>. My mother was turning sixty and had finally agreed to upgrade to a smartphone after seeing how much my father enjoyed his. I started by showing her the <mark>most basic functions</mark> — how to make calls, send text messages, and navigate the home screen.</p><p>I quickly realized that teaching was <mark>much harder than I expected</mark>. I had to be incredibly <mark>patient and break everything down</mark> into tiny steps. For instance, showing her how to take a photo required explaining the camera app, how to <mark>aim and tap the button</mark>, and then how to view the photo afterward. I used <mark>analogies and visual aids</mark> to help her understand — like comparing the touch screen to touching a button on a physical device.</p><p>Her reactions were <mark>absolutely precious</mark>. When she successfully sent her first text message, she was so <mark>proud and excited</mark> that she immediately wanted to show everyone in the family. By the end of the weekend, she could use <mark>voice calls, video calls, and basic apps</mark> with confidence. Teaching her gave me a <mark>whole new appreciation for patience and the satisfaction of sharing knowledge</mark>.</p>',
+    vocab: [
+      { word: 'taught my mother how to use a smartphone', meaning: 'helped my mother learn to operate a modern mobile phone' },
+      { word: 'intimidated by technology', meaning: 'feeling nervous or afraid of using technical devices' },
+      { word: 'most basic functions', meaning: 'the simplest operations of a device' },
+      { word: 'break everything down', meaning: 'divide complex tasks into simpler parts' },
+      { word: 'aim and tap the button', meaning: 'position and touch the screen to take action' },
+      { word: 'analogies and visual aids', meaning: 'comparisons and pictures that help explain things' },
+      { word: 'absolutely precious', meaning: 'extremely wonderful or touching' },
+      { word: 'proud and excited', meaning: 'feeling happy about an achievement' },
+      { word: 'voice calls, video calls, and basic apps', meaning: 'communication and application features' },
+      { word: 'sharing knowledge', meaning: 'passing on information to others' }
+    ],
+    tips: [
+      'Explain who you taught and what new skill they learned',
+      'Describe how you went about teaching — methods, patience required',
+      'Share specific examples of what you taught and how they learned',
+      'Describe their reaction and what the experience taught you'
+    ]
+  },
+
+  // Card: A Skill That Is Important in Life (p2-20)
+  'p2-20': {
+    answer: '<p>The life skill I consider absolutely essential is <mark>time management</mark>. It\'s the ability that has made the biggest difference in my <mark>personal and academic life</mark>, and I\'m convinced it\'s one of the most <mark>transferable and valuable skills</mark> anyone can develop.</p><p>I first recognized the importance of time management during my <mark>undergraduate years</mark> when I had to juggle <mark>heavy coursework, part-time work, and extracurricular activities</mark>. Initially, I was constantly <mark>overwhelmed and stressed</mark>, missing deadlines and feeling like I was always behind. That\'s when I started researching and implementing <mark>time management strategies</mark>.</p><p>I learned to manage my time through a combination of methods. I started using a <mark>weekly planner</mark> to schedule my tasks, adopted the <mark>Eisenhower Matrix</mark> to prioritize effectively, and began using the <mark>Pomodoro Technique</mark> to maintain focus during study sessions. I also learned to <mark>break large projects into smaller tasks</mark> and set intermediate deadlines.</p><p>This skill has been <mark>absolutely transformative</mark>. I\'ve gone from feeling constantly rushed to having <mark>time for both work and leisure</mark>. My grades improved significantly, and I actually feel less stressed now despite having more responsibilities. Time management has taught me that it\'s not about <mark>being busy all the time</mark> but about being <mark>intentional and strategic</mark> about how we spend our most precious resource.</p>',
+    vocab: [
+      { word: 'time management', meaning: 'the ability to organize and plan how to divide time between activities' },
+      { word: 'personal and academic life', meaning: 'both your private life and your studies' },
+      { word: 'transferable and valuable skills', meaning: 'abilities that can be used in many different situations' },
+      { word: 'undergraduate years', meaning: 'the period spent studying for a bachelor\'s degree' },
+      { word: 'heavy coursework, part-time work, and extracurricular activities', meaning: 'studying, working, and other commitments' },
+      { word: 'overwhelmed and stressed', meaning: 'feeling unable to cope with demands' },
+      { word: 'Eisenhower Matrix', meaning: 'a prioritization tool that categorizes tasks by urgency and importance' },
+      { word: 'break large projects into smaller tasks', meaning: 'divide big work into manageable pieces' },
+      { word: 'absolutely transformative', meaning: 'completely changing something for the better' },
+      { word: 'intentional and strategic', meaning: 'planned and purposeful' }
+    ],
+    tips: [
+      'Name the skill and explain why it\'s important in life',
+      'Share how and when you learned this skill',
+      'Describe how the skill has helped you specifically',
+      'Give practical examples of how you use this skill'
+    ]
+  },
+
+  // Card: A Skill You Would Like to Learn (p2-22)
+  'p2-22': {
+    answer: '<p>The skill I\'d love to learn in the future is <mark>graphic design</mark>, particularly <mark>digital illustration and visual communication</mark>. It\'s something I\'ve been wanting to pursue for quite some time now.</p><p>My interest in graphic design began when I started <mark>following designers on social media</mark> and was amazed by their ability to <mark>create visual stories</mark> that could evoke emotions and communicate complex ideas in an instant. I\'ve always admired people who can <mark>combine creativity with technology</mark> to produce something beautiful and functional.</p><p>If I were to learn this skill, I would start by <mark>enrolling in online courses</mark> on platforms like Coursera or Udemy, which offer comprehensive programs in graphic design. I would also practice regularly by <mark>creating designs for personal projects</mark> and <mark>seeking feedback</mark> from online communities. Eventually, I\'d like to invest in a <mark>drawing tablet</mark> to make the process more efficient.</p><p>I plan to start learning within the next few months, possibly during my <mark>summer break from university</mark>. The reason I want to learn this skill is multifaceted — it would <mark>complement my current studies</mark>, give me a <mark>creative outlet</mark>, and potentially open up <mark>freelance opportunities</mark> in the future. More importantly, I believe it would help me <mark>think more visually and communicate more effectively</mark> in our increasingly image-driven world.</p>',
+    vocab: [
+      { word: 'graphic design', meaning: 'the art of creating visual content for communication' },
+      { word: 'digital illustration and visual communication', meaning: 'creating images using digital tools and conveying messages through visuals' },
+      { word: 'create visual stories', meaning: 'tell narratives through images and design' },
+      { word: 'combine creativity with technology', meaning: 'use imagination along with technical tools' },
+      { word: 'enrolling in online courses', meaning: 'signing up for education through the internet' },
+      { word: 'seeking feedback', meaning: 'asking for opinions to improve' },
+      { word: 'drawing tablet', meaning: 'a device that allows drawing on a computer with a special pen' },
+      { word: 'summer break from university', meaning: 'the vacation period during summer' },
+      { word: 'freelance opportunities', meaning: 'ways to work independently for different clients' },
+      { word: 'think more visually', meaning: 'process information through images and design' }
+    ],
+    tips: [
+      'Name the specific skill you want to learn',
+      'Explain why you want to learn it and when you became interested',
+      'Describe how you would go about learning it',
+      'Share your timeline and what motivates you to pursue this skill'
+    ]
+  },
+
+  // Card: A Natural Place You Visited (p2-23)
+  'p2-23': {
+    answer: '<p>One of the most <mark>awe-inspiring natural places</mark> I\'ve ever visited is the <mark>Zao Mountain Range</mark> in Japan, which I explored during a trip about two years ago. It\'s famous for its <mark>"snow monsters"</mark> — trees covered in thick snow and ice that create <mark>unusual, otherworldly shapes</mark>.</p><p>I went there in February during the peak winter season. The <mark>cable car ride</mark> to the summit was already an adventure in itself, offering <mark>breathtaking panoramic views</mark> of the snow-covered landscape. At the top, the <mark>wintry wonderland</mark> stretched as far as the eye could see — thousands of <mark>beech trees encased in white</mark>, standing like silent statues in the fog.</p><p>I spent the entire day <mark>hiking through the trails</mark> with a small group. There was something almost <mark>spiritual about the place</mark> — the way the snow muffled all sounds, creating a <mark>serene, almost sacred silence</mark>. I also visited the <mark>natural hot springs</mark> at the base of the mountain, which was the perfect way to warm up after hours in the cold.</p><p>What really moved me was the <mark>profound sense of peace and perspective</mark> I felt standing amidst such natural grandeur. It reminded me of how <mark>small we are in the grand scheme of things</mark> and how important it is to <mark>preserve these pristine environments</mark> for future generations. This experience sparked a deeper <mark>appreciation for nature</mark> that has stayed with me ever since.</p>',
+    vocab: [
+      { word: 'awe-inspiring natural places', meaning: 'locations that inspire strong feelings of wonder' },
+      { word: 'Zao Mountain Range', meaning: 'a mountain area in Japan known for winter scenery' },
+      { word: '"snow monsters"', meaning: 'trees covered in snow and ice with unusual shapes' },
+      { word: 'otherworldly shapes', meaning: 'forms that look like they belong in a fantasy world' },
+      { word: 'breathtaking panoramic views', meaning: 'stunning scenery that spans across the horizon' },
+      { word: 'wintry wonderland', meaning: 'a beautiful winter landscape' },
+      { word: 'hiking through the trails', meaning: 'walking on marked paths in nature' },
+      { word: 'serene, almost sacred silence', meaning: 'a peaceful, deeply respectful quiet' },
+      { word: 'profound sense of peace and perspective', meaning: 'a deep feeling of calm and understanding' },
+      { word: 'pristine environments', meaning: 'pure, untouched natural areas' }
+    ],
+    tips: [
+      'Name the natural place and describe where it is',
+      'Explain what you did there and what you saw',
+      'Describe who you went with and the atmosphere',
+      'Share how the experience affected you emotionally'
+    ]
+  },
+
+  // Card: Something You Did That Was New and Exciting (p2-24)
+  'p2-24': {
+    answer: '<p>Something I did recently that was completely <mark>new and exhilarating</mark> was <mark>go skydiving</mark> for the first time about six months ago. It was hands down the most <mark>adrenaline-pumping experience</mark> of my life.</p><p>The event took place at a <mark>licensed skydiving center</mark> about two hours from my city. I had booked the experience on impulse after my friend challenged me to do something <mark>outside my comfort zone</mark>. When I arrived, I was a <mark>mixed bundle of nerves and excitement</mark>.</p><p>After completing the <mark>mandatory safety training</mark> and getting fitted into a jumpsuit and harness, we were taken up in the plane. The ascent to <mark>14,000 feet</mark> felt both exciting and terrifying. The instructor strapped himself to my back, and when the door opened, the <mark>roaring wind and cold air</mark> hit me immediately. Then came the jump — and for those few <mark>incredible seconds of freefall</mark>, time seemed to stop. The sensation of <mark>flying through the clouds</mark> was absolutely indescribable.</p><p>The experience was <mark>truly transformative</mark>. It showed me that I was capable of far more than I thought. Every time I face a <mark>challenging situation</mark> now, I remind myself of that moment of jumping out of a plane and use it as <mark>proof that I can push through fear</mark>. It\'s safe to say it was a <mark>life-changing moment</mark> that I\'ll never forget.</p>',
+    vocab: [
+      { word: 'new and exhilarating', meaning: 'something never experienced before that is very exciting' },
+      { word: 'go skydiving', meaning: 'the sport of jumping from an aircraft and falling before opening a parachute' },
+      { word: 'adrenaline-pumping experience', meaning: 'an activity that creates high excitement and nervous energy' },
+      { word: 'outside my comfort zone', meaning: 'beyond what I normally feel comfortable doing' },
+      { word: 'licensed skydiving center', meaning: 'an officially permitted skydiving facility' },
+      { word: 'mandatory safety training', meaning: 'required instruction on how to stay safe' },
+      { word: 'incredible seconds of freefall', meaning: 'the brief period of falling through the air before the parachute opens' },
+      { word: 'flying through the clouds', meaning: 'moving through the sky among cloud formations' },
+      { word: 'truly transformative', meaning: 'making a deep and lasting change' },
+      { word: 'life-changing moment', meaning: 'an experience that significantly alters one\'s life' }
+    ],
+    tips: [
+      'Name the activity and explain when and where you did it',
+      'Describe what made this experience new and exciting',
+      'Share specific details about what you did and felt',
+      'Explain why this experience was memorable and how it affected you'
+    ]
+  },
+
+  // Card: A Time You Disagreed with Someone (p2-27)
+  'p2-27': {
+    answer: '<p>A time when I had a <mark>significant disagreement</mark> was with my best friend Priya about <mark>choosing a university for our postgraduate studies</mark>. This happened about a year ago when we were both applying to various programs.</p><p>The disagreement arose because Priya wanted us to apply to the <mark>same university</mark> in a different city, while I had my heart set on staying in our hometown. We had <mark>been inseparable</mark> throughout our undergraduate years, and she felt that <mark>going our separate ways</mark> would affect our friendship. She argued that experiencing new things <mark>together</mark> would strengthen our bond.</p><p>For my part, I explained that my <mark>family situation required</mark> me to stay close to home — my mother had been unwell, and I needed to <mark>be available for her</mark>. This was a non-negotiable factor for me. I suggested that <mark>distance wouldn\'t weaken our friendship</mark> — that true friendship could survive being apart, and we could visit each other during breaks.</p><p>It took several <mark>honest and heartfelt conversations</mark> before we found a resolution. In the end, we both <mark>respected each other\'s choices</mark>. Priya went to the other city while I stayed local. Looking back, this experience actually <mark>strengthened our friendship</mark> because we learned how to <mark>communicate openly and respect each other\'s boundaries</mark>. It taught me that disagreements, when handled maturely, can actually <mark>deepen relationships</mark> rather than damage them.</p>',
+    vocab: [
+      { word: 'significant disagreement', meaning: 'a serious difference of opinion' },
+      { word: 'choosing a university', meaning: 'deciding which higher education institution to attend' },
+      { word: 'postgraduate studies', meaning: 'advanced education after completing a bachelor\'s degree' },
+      { word: 'been inseparable', meaning: 'always together and never apart' },
+      { word: 'going our separate ways', meaning: 'taking different paths or directions' },
+      { word: 'family situation required', meaning: 'circumstances at home made something necessary' },
+      { word: 'be available for her', meaning: 'be present and ready to help her' },
+      { word: 'honest and heartfelt conversations', meaning: 'sincere discussions with genuine emotion' },
+      { word: 'communicate openly', meaning: 'share thoughts and feelings freely and honestly' },
+      { word: 'deepen relationships', meaning: 'make connections stronger and more meaningful' }
+    ],
+    tips: [
+      'Explain who you disagreed with and what the disagreement was about',
+      'Share both sides of the argument',
+      'Describe how you resolved the disagreement',
+      'Reflect on how the experience affected your relationship'
+    ]
+  },
+
+  // Card: A Decision You Made That Changed Your Life (p2-28)
+  'p2-28': {
+    answer: '<p>The decision that has had the most <mark>profound impact on my life</mark> was choosing to <mark>study abroad for a year</mark> as part of my university program. This happened three years ago, and it fundamentally <mark>transformed who I am as a person</mark>.</p><p>At the time, I was faced with a <mark>difficult choice</mark>. On one hand, I could stay in my home country and continue my studies as normal. On the other hand, I had been offered a place in an <mark>exchange program</mark> that would take me to a university in Germany for one year. There were also alternative options like <mark>taking a gap year to work</mark> or pursuing an <mark>internship locally</mark>.</p><p>The main factor that influenced my decision was my <mark>desire to challenge myself</mark> and step outside my comfort zone. I had always been someone who <mark>preferred familiarity and security</mark>, and I knew that staying put would mean missing out on a <mark>life-changing opportunity</mark>. I also reasoned that <mark>immersing myself in a different culture</mark> would help me grow as a person and open doors to <mark>international career opportunities</mark>.</p><p>That single decision has <mark>completely altered the trajectory of my life</mark>. I made lifelong friends from around the world, became <mark>fluent in German</mark>, developed <mark>greater independence and confidence</mark>, and discovered a <mark>passion for international affairs</mark>. The experience also helped me <mark>clarify my career goals</mark>. If I had made a different choice, I would not be the person I am today.</p>',
+    vocab: [
+      { word: 'profound impact on my life', meaning: 'a deep and significant effect on my life' },
+      { word: 'study abroad for a year', meaning: 'attend university in another country for one year' },
+      { word: 'difficult choice', meaning: 'a decision that was hard to make' },
+      { word: 'exchange program', meaning: 'a program allowing students to study at another university' },
+      { word: 'taking a gap year', meaning: 'taking a year off from studies to do other things' },
+      { word: 'challenge myself', meaning: 'push myself to try difficult things' },
+      { word: 'step outside my comfort zone', meaning: 'do things that are beyond my usual limits' },
+      { word: 'immersing myself in a different culture', meaning: 'deeply engaging with traditions of another country' },
+      { word: 'completely altered the trajectory of my life', meaning: 'fundamentally changed the direction of my life' },
+      { word: 'clarify my career goals', meaning: 'better understand what I want to do professionally' }
+    ],
+    tips: [
+      'Name the decision and explain what alternatives you had',
+      'Describe the factors that influenced your choice',
+      'Share how the decision changed your life — be specific about outcomes',
+      'Reflect on whether it was the right decision'
+    ]
+  },
+
+  // Card: A Book You Have Read Recently (p2-29)
+  'p2-29': {
+    answer: '<p>The book I\'ve read recently that has truly stayed with me is <mark>"Atomic Habits" by James Clear</mark>. I finished it about three months ago, and it has <mark>completely reshaped my approach</mark> to personal development.</p><p>The book is about the <mark>power of small improvements</mark> and how making tiny, consistent changes can lead to <mark>remarkable results over time</mark>. Clear argues that we should focus on <mark>systems rather than goals</mark> — instead of setting ambitious targets, we should build <mark>habits and routines</mark> that naturally lead to success.</p><p>I picked up this book because I had been struggling with <mark>consistency in my studies and fitness routine</mark>. I would start strong but <mark>quickly lose motivation</mark> after a few weeks. Clear\'s concepts of <mark>"habit stacking," "environment design,"</mark> and the <mark>"two-minute rule"</mark> were exactly what I needed. The idea of making habits so <mark>easy to start</mark> that they become inevitable was a game-changer for me.</p><p>Since reading the book, I\'ve implemented several of its principles. I\'ve created a <mark>morning routine</mark> that starts with just two minutes of reading, and I\'ve redesigned my study space to <mark>minimize distractions</mark>. The results have been <mark>noticeably positive</mark> — I\'m more consistent, less stressed, and more <mark>confident in my ability to improve</mark>. This book has proven to be one of the most <mark>practical and transformative reads</mark> of my life.</p>',
+    vocab: [
+      { word: 'Atomic Habits', meaning: 'a bestselling self-improvement book by James Clear' },
+      { word: 'completely reshaped my approach', meaning: 'fundamentally changed how I think and act' },
+      { word: 'power of small improvements', meaning: 'the effectiveness of making tiny positive changes' },
+      { word: 'systems rather than goals', meaning: 'focusing on processes instead of targets' },
+      { word: 'habits and routines', meaning: 'regular patterns of behavior' },
+      { word: 'consistency in my studies', meaning: 'regular and steady effort in learning' },
+      { word: 'habit stacking', meaning: 'linking a new habit to an existing one' },
+      { word: 'environment design', meaning: 'arranging your surroundings to support good habits' },
+      { word: 'game-changer', meaning: 'something that significantly improves a situation' },
+      { word: 'practical and transformative reads', meaning: 'books that are useful and life-changing' }
+    ],
+    tips: [
+      'Name the book and explain what it\'s about',
+      'Share why you chose to read it',
+      'Describe the main ideas or lessons that stood out to you',
+      'Explain how the book affected you or changed your thinking'
+    ]
+  },
+
+  // Card: A Festival That Is Important in Your Country (p2-31)
+  'p2-31': {
+    answer: '<p>A festival that holds <mark>immense cultural significance</mark> in my country is <mark>Diwali</mark>, the Festival of Lights. It\'s celebrated by millions of <mark>Hindus, Sikhs, and Jains</mark> across India and is genuinely the most <mark>joyful and anticipated celebration</mark> of the year.</p><p>During Diwali, which usually falls in October or November, my family and I engage in a <mark>wide range of traditions</mark>. We start by <mark>cleaning and decorating our home</mark> with colorful rangoli designs and oil lamps called diyas. On the main night, we perform a <mark>prayer ceremony</mark> to Goddess Lakshmi, seeking blessings for prosperity. Then comes the best part — <mark>lighting fireworks and bursting crackers</mark>! We also prepare <mark>traditional sweets and snacks</mark> to share with neighbors and relatives.</p><p>I usually celebrate Diwali with my <mark>immediate and extended family</mark> who gather at my grandparents\' ancestral home. The entire neighborhood comes alive with <mark>dancing, music, and laughter</mark>. The sight of <mark>thousands of diyas</mark> illuminating houses and temples is absolutely <mark>magnificent and spiritual</mark>.</p><p>What makes Diwali so important to me is its <mark>deeper spiritual meaning</mark>. It represents the <mark>triumph of light over darkness</mark> and good over evil. It\'s a time for <mark>renewal, forgiveness, and gratitude</mark>. Despite the commercialization of the festival, I believe its <mark>core message of positivity and unity</mark> remains as relevant as ever, and it truly brings our <mark>diverse community together</mark>.</p>',
+    vocab: [
+      { word: 'immense cultural significance', meaning: 'great importance in a culture' },
+      { word: 'Festival of Lights', meaning: 'another name for Diwali, celebrating light over darkness' },
+      { word: 'Hindus, Sikhs, and Jains', meaning: 'various religious communities in India' },
+      { word: 'cleaning and decorating our home', meaning: 'tidying and adorning the house' },
+      { word: 'traditional sweets and snacks', meaning: 'typical Indian food prepared for celebrations' },
+      { word: 'immediate and extended family', meaning: 'close relatives and other family members' },
+      { word: 'thousands of diyas', meaning: 'numerous small oil lamps' },
+      { word: 'magnificent and spiritual', meaning: 'impressive and deeply meaningful' },
+      { word: 'triumph of light over darkness', meaning: 'victory of good over evil' },
+      { word: 'diverse community together', meaning: 'bringing different groups of people united' }
+    ],
+    tips: [
+      'Name the festival and explain when and why it is celebrated',
+      'Describe specific traditions and activities you participate in',
+      'Share who you celebrate with and how',
+      'Explain the cultural or spiritual significance of the festival'
+    ]
+  },
+
+  // Card: Something You Want to Do but Have Not Had Time For (p2-32)
+  'p2-32': {
+    answer: '<p>Something I\'ve been longing to do for years but simply haven\'t found the time for is <mark>learning to play the guitar</mark>. It\'s been a <mark>burning desire</mark> ever since I watched a local band perform at a street festival about five years ago and was <mark>completely captivated</mark> by the sound of an acoustic guitar.</p><p>What I want to do is not just learn a few basic chords — I want to <mark>genuinely master the instrument</mark> and be able to play my favorite songs. I dream of sitting on a <mark>peaceful evening</mark>, strumming along to folk songs, and eventually being able to <mark>compose my own music</mark>. There\'s something incredibly <mark>romantic and fulfilling</mark> about the idea of making music with my own hands.</p><p>I plan to start learning once I complete my <mark>current academic commitments</mark> — probably after my final exams next year. I\'ve already done some research and found a <mark>reputable music school</mark> nearby that offers flexible evening classes. I\'ve also been <mark>saving up</mark> to buy a good quality guitar.</p><p>The main reason I haven\'t been able to pursue this yet is simply the <mark>lack of time and mental bandwidth</mark>. Between university, work, and other responsibilities, there always seems to be something more urgent. However, I firmly believe that <mark>passion projects</mark> like this are essential for <mark>overall well-being and happiness</mark>, which is why I\'m determined to make it happen soon.</p>',
+    vocab: [
+      { word: 'learning to play the guitar', meaning: 'acquiring the skill of producing music on a guitar' },
+      { word: 'burning desire', meaning: 'a strong and urgent wish' },
+      { word: 'completely captivated', meaning: 'extremely interested and drawn in' },
+      { word: 'genuinely master the instrument', meaning: 'truly become skilled at playing it' },
+      { word: 'peaceful evening', meaning: 'a calm and quiet night' },
+      { word: 'compose my own music', meaning: 'create original music myself' },
+      { word: 'romantic and fulfilling', meaning: 'emotionally satisfying and dreamy' },
+      { word: 'current academic commitments', meaning: 'present educational responsibilities' },
+      { word: 'reputable music school', meaning: 'a well-respected music teaching institution' },
+      { word: 'passion projects', meaning: 'activities pursued for enjoyment rather than necessity' }
+    ],
+    tips: [
+      'Name what you want to do and why you want to do it',
+      'Explain when you first developed this desire',
+      'Share your plans for when and how you\'ll do it',
+      'Describe why you haven\'t been able to do it yet'
+    ]
+  },
+
+  // Card: A Piece of Equipment in Your Home (p2-33)
+  'p2-33': {
+    answer: '<p>A piece of equipment in my home that I absolutely <mark>cannot imagine living without</mark> is our <mark>robotic vacuum cleaner</mark>. It\'s a relatively recent addition — we bought it about two years ago — and it has genuinely <mark>revolutionized the way we manage household chores</mark>.</p><p>The device is a <mark>smart, disc-shaped vacuum</mark> that autonomously navigates around the house, <mark>detecting and avoiding obstacles</mark>. It connects to our Wi-Fi and can be <mark>controlled via a smartphone app</mark>. We schedule it to clean every morning at 8 AM before anyone wakes up, and it returns to its charging station when done.</p><p>I\'ve had this vacuum for about two years now, and I use it <mark>almost every day</mark>. The difference it has made to our daily lives is remarkable — we spend <mark>significantly less time</mark> on floor cleaning, and our floors are consistently <mark>spotless and dust-free</mark>. It\'s particularly useful for reaching <mark>under beds and furniture</mark> that are difficult to clean manually.</p><p>This piece of technology has made my life <mark>infinitely easier</mark> by freeing up time that I can spend on more <mark>productive or enjoyable activities</mark>. It has also sparked my interest in <mark>smart home technology</mark> and automation. What I love most is how it <mark>seamlessly integrates into daily routine</mark> — once set up, it requires virtually no effort from us, yet consistently delivers excellent results.</p>',
+    vocab: [
+      { word: 'cannot imagine living without', meaning: 'consider essential and irreplaceable' },
+      { word: 'robotic vacuum cleaner', meaning: 'an automatic device that cleans floors by itself' },
+      { word: 'revolutionized the way', meaning: 'completely changed how something is done' },
+      { word: 'smart, disc-shaped vacuum', meaning: 'a round intelligent cleaning device' },
+      { word: 'autonomously navigates', meaning: 'moves around independently' },
+      { word: 'detecting and avoiding obstacles', meaning: 'sensing and going around things in the way' },
+      { word: 'controlled via a smartphone app', meaning: 'operated using a mobile phone application' },
+      { word: 'significantly less time', meaning: 'a notably reduced amount of time' },
+      { word: 'spotless and dust-free', meaning: 'completely clean with no dust' },
+      { word: 'seamlessly integrates into daily routine', meaning: 'fits naturally into everyday life' }
+    ],
+    tips: [
+      'Name the equipment and describe what it looks like',
+      'Explain how long you\'ve had it and how often you use it',
+      'Describe specific ways it has made your life easier',
+      'Share why this particular piece of equipment is so valuable to you'
+    ]
+  },
+
+  // Card: A Time When You Were Surprised (p2-35)
+  'p2-35': {
+    answer: '<p>One of the most <mark>unexpected and delightful surprises</mark> I\'ve ever experienced was when I <mark>ran into an old school friend</mark> in a completely different country. This happened about eight months ago when I was <mark>visiting Tokyo on vacation</mark>.</p><p>I was walking through the <mark>bustling Shibuya district</mark> on a Saturday evening, navigating through the crowds near the famous <mark>crossing</mark>, when I heard someone call my name. At first, I thought I was <mark>mistaken</mark> — what were the chances of meeting someone I knew in such a <mark>vast and foreign city</mark>? But then I turned around and saw <mark>Rahul, my best friend from primary school</mark>, standing there with the biggest smile on his face.</p><p>Both of us were <mark>completely shocked</mark>. We hadn\'t seen each other in over <mark>twelve years</mark> since he moved to another city with his family when we were just kids. We immediately <mark>embraced and started talking</mark> non-stop, trying to catch up on all those years. What made this even more <mark>extraordinary</mark> was that neither of us had any idea the other would be in Japan — it was pure coincidence.</p><p>The experience left me feeling <mark>overwhelmed with joy and a strange sense of nostalgia</mark>. It reminded me that the world is smaller than we think and that <mark>meaningful connections</mark> can be rekindled in the most <mark>unexpected circumstances</mark>. We spent the entire evening together and have been <mark>in regular contact ever since</mark>, planning to meet again soon.</p>',
+    vocab: [
+      { word: 'unexpected and delightful surprises', meaning: 'pleasant events that no one anticipated' },
+      { word: 'ran into an old school friend', meaning: 'met a former classmate by chance' },
+      { word: 'bustling Shibuya district', meaning: 'a busy, lively area in Tokyo' },
+      { word: 'completely shocked', meaning: 'very surprised and unable to believe what happened' },
+      { word: 'twelve years', meaning: 'a long time period' },
+      { word: 'extraordinary', meaning: 'very unusual or remarkable' },
+      { word: 'overwhelmed with joy', meaning: 'filled with great happiness' },
+      { word: 'a strange sense of nostalgia', meaning: 'a longing for the past mixed with surprise' },
+      { word: 'meaningful connections', meaning: 'important relationships between people' },
+      { word: 'unexpected circumstances', meaning: 'situations that happen by chance' }
+    ],
+    tips: [
+      'Explain what surprised you and describe the situation',
+      'Share when and where it happened',
+      'Describe who was with you during this moment',
+      'Explain how you felt and how you reacted to the surprise'
+    ]
+  },
+
+  // Card: An Object You Cannot Live Without (p2-36)
+  'p2-36': {
+    answer: '<p>The object I truly cannot imagine living without is my <mark>smartphone</mark>. It has become so <mark>integral to my daily existence</mark> that it feels like an extension of myself rather than just a device.</p><p>I received my first smartphone when I was sixteen years old, and that was about seven years ago. Since then, it has become <mark>increasingly essential</mark> with each passing year. I use it throughout the day — for <mark>communication, navigation, entertainment, banking, and work</mark>. It\'s the first thing I reach for in the morning and the last thing I check before sleep.</p><p>The ways in which it has made my life easier are <mark>virtually countless</mark>. It allows me to <mark>stay connected with friends and family</mark> no matter where they are in the world. I can <mark>access information instantly</mark> for work or studies. The <mark>navigation apps</mark> have saved me from getting lost countless times. I can <mark>manage my finances, shop online, and entertain myself</mark> during commutes or waiting periods. In essence, it has become my <mark>personal assistant, entertainer, and lifeline</mark>.</p><p>What I find remarkable is how it has <mark>democratized access to information and services</mark>. Whether it\'s <mark>learning a new skill</mark> through apps, <mark>calling a cab</mark>, or <mark>translating languages</mark> while traveling, the smartphone has made so many things possible that would have been <mark>inconceivable just a decade ago</mark>. It has truly become <mark>indispensable</mark> in the way I function in modern society.</p>',
+    vocab: [
+      { word: 'smartphone', meaning: 'a mobile phone with advanced computer capabilities' },
+      { word: 'integral to my daily existence', meaning: 'essential and woven into everyday life' },
+      { word: 'increasingly essential', meaning: 'becoming more and more necessary over time' },
+      { word: 'communication, navigation, entertainment, banking, and work', meaning: 'various functions a smartphone provides' },
+      { word: 'stay connected with friends and family', meaning: 'maintain relationships with loved ones' },
+      { word: 'virtually countless', meaning: 'too many to count' },
+      { word: 'access information instantly', meaning: 'obtain knowledge immediately' },
+      { word: 'personal assistant, entertainer, and lifeline', meaning: 'a device that helps with tasks, fun, and safety' },
+      { word: 'democratized access to information', meaning: 'made knowledge available to everyone' },
+      { word: 'indispensable', meaning: 'absolutely necessary and impossible to replace' }
+    ],
+    tips: [
+      'Name the object and describe it briefly',
+      'Explain when you got it and how often you use it',
+      'Share specific ways it has made your life easier or better',
+      'Explain why this object is so important to you'
+    ]
+  },
+
+  // Card: A Time When You Felt Very Proud of Yourself (p2-37)
+  'p2-37': {
+    answer: '<p>A moment when I felt an <mark>immense sense of pride</mark> was when I <mark>completed my first marathon</mark> about a year ago. It was a grueling 42-kilometer race that pushed me to my absolute <mark>physical and mental limits</mark>, and crossing that finish line was one of the most <mark>triumphant moments</mark> of my life.</p><p>The event took place in my hometown on a <mark>crisp autumn morning</mark>. There were thousands of runners, and the atmosphere was <mark>electric and inspiring</mark>. My family had come to support me, and I could see them <mark>cheering from the sidelines</mark> as I approached the finish line. When I finally crossed it, I was <mark>overwhelmed with emotion</mark> — I fell to my knees and cried tears of <mark>pure joy and relief</mark>.</p><p>What made this achievement even more special was that I had only <mark>started running seriously</mark> three years earlier, after years of being <mark>completely sedentary</mark>. There were many times during training when I wanted to <mark>give up</mark> — the early morning runs, the aching muscles, the self-doubt. But I persevered, and that day proved to myself that <mark>dedication and hard work truly pay off</mark>.</p><p>The feeling of pride wasn\'t just about finishing the race — it was about <mark>proving my own capability</mark> and learning that I could set a <mark>seemingly impossible goal</mark> and actually achieve it through <mark>consistent effort and determination</mark>. That experience has given me <mark>unshakeable confidence</mark> that I carry with me in all aspects of my life.</p>',
+    vocab: [
+      { word: 'immense sense of pride', meaning: 'a very strong feeling of satisfaction in oneself' },
+      { word: 'completed my first marathon', meaning: 'finished a 42.195 km running race for the first time' },
+      { word: 'physical and mental limits', meaning: 'the maximum capability of body and mind' },
+      { word: 'triumphant moments', meaning: 'times of great victory and success' },
+      { word: 'crisp autumn morning', meaning: 'a cool, fresh morning in fall' },
+      { word: 'electric and inspiring', meaning: 'full of excitement and motivation' },
+      { word: 'cheering from the sidelines', meaning: 'showing support from the edges of the race' },
+      { word: 'completely sedentary', meaning: 'living a lifestyle with very little physical activity' },
+      { word: 'dedication and hard work truly pay off', meaning: 'effort and commitment lead to success' },
+      { word: 'unshakeable confidence', meaning: 'a belief in oneself that cannot be broken' }
+    ],
+    tips: [
+      'Explain what happened and describe the achievement',
+      'Share where and when it took place',
+      'Describe who was there to witness it',
+      'Reflect on why this moment made you feel proud'
+    ]
   }
 
 };

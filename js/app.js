@@ -80,7 +80,18 @@ var I18N = {
     'settings.reset': 'Reset All Progress',
     'settings.reset.confirm': 'This will delete all your practice history, bookmarks, and vocabulary. Are you sure?',
     'settings.export': 'Export Vocabulary',
+    'settings.export.csv': 'Export as CSV',
+    'settings.export.json': 'Export as JSON',
+    'settings.backup': 'Backup Progress',
+    'settings.restore': 'Restore from Backup',
+    'settings.print': 'Print Cue Card',
     'settings.share': 'Share',
+    'settings.import.success': 'Data restored successfully!',
+    'settings.import.error': 'Failed to restore: Invalid file format',
+    'settings.backup.success': 'Progress backed up!',
+    'settings.backup.error': 'Failed to create backup',
+    'settings.print.desc': 'Print or save cue card as PDF',
+    'settings.restore.desc': 'Import previously saved backup file',
 
     // Tips
     'tips.part1.title': 'Part 1 Strategies',
@@ -134,7 +145,50 @@ var I18N = {
     'model.band7': 'Band 7+ Model Answer',
     'model.vocab': 'Key Vocabulary',
     'model.tips': 'Speaking Tips',
-    'model.empty': 'No model answer available for this card yet.'
+    'model.empty': 'No model answer available for this card yet.',
+
+    // History
+    'history.title': 'Practice History',
+    'history.recordings': 'Recordings',
+    'history.compare': 'Compare',
+    'history.words': 'Words to Practice',
+    'history.empty': 'No Recording History',
+    'history.emptyDesc': 'Start recording your practice sessions to see them here.',
+    'history.hint': 'Click the Record button during practice to save your recordings.',
+    'history.recordingsCount': 'Recordings',
+    'history.totalTime': 'Total Time',
+    'history.avgWpm': 'Avg WPM',
+    'history.wordsToPractice': 'Words to Practice',
+
+    // Comparison
+    'comparison.title': 'Speaking Rate Comparison',
+    'comparison.sub': 'Track your WPM improvement over recent sessions',
+    'comparison.empty': 'Not Enough Data',
+    'comparison.emptyDesc': 'Record at least 2 practice sessions to compare your progress over time.',
+    'comparison.avgWpm': 'Average WPM',
+    'comparison.firstSession': 'First Session',
+    'comparison.latestSession': 'Latest Session',
+    'comparison.change': 'Change',
+    'comparison.trend': 'WPM Trend',
+    'comparison.last20': '(Last 20 Sessions)',
+    'comparison.slow': 'Slow',
+    'comparison.good': 'Good',
+    'comparison.fast': 'Fast',
+    'comparison.tips': 'Tips to Improve',
+
+    // Words to Practice
+    'words.title': 'Words to Practice',
+    'words.sub': 'These words and phrases are commonly flagged in IELTS speaking. Try using more advanced vocabulary.',
+    'words.empty': 'No Problem Words Yet',
+    'words.emptyDesc': 'The app tracks overused or basic vocabulary from your recordings.',
+    'words.hint': 'Keep recording to identify words to practice!',
+    'words.betterAlt': 'Better Alternatives',
+    'words.insteadOf': 'Instead of...',
+    'words.try': 'Try...',
+    'words.informal': 'Informal',
+    'words.filler': 'Filler',
+    'words.basic': 'Basic',
+    'words.repeated': 'Repeated'
   },
 
   id: {
@@ -210,7 +264,18 @@ var I18N = {
     'settings.reset': 'Reset Semua Progres',
     'settings.reset.confirm': 'Ini akan menghapus semua riwayat, penanda, dan kosakata. Yakin?',
     'settings.export': 'Export Kosakata',
+    'settings.export.csv': 'Export sebagai CSV',
+    'settings.export.json': 'Export sebagai JSON',
+    'settings.backup': 'Backup Progress',
+    'settings.restore': 'Pulihkan dari Backup',
+    'settings.print': 'Cetak Kartu',
     'settings.share': 'Bagikan',
+    'settings.import.success': 'Data berhasil dipulihkan!',
+    'settings.import.error': 'Gagal memulihkan: Format file tidak valid',
+    'settings.backup.success': 'Progress di-backup!',
+    'settings.backup.error': 'Gagal membuat backup',
+    'settings.print.desc': 'Cetak atau simpan kartu sebagai PDF',
+    'settings.restore.desc': 'Import file backup yang sudah disimpan',
 
     // Tips
     'tips.part1.title': 'Strategi Part 1',
@@ -327,6 +392,8 @@ class App {
     this.dailyChallenge = null;      // { date, cardId }
     this.shuffleOrder = null;       // Array of shuffled indices for Part 2
     this.history = [];               // Array of practice sessions { id, part, topicId, timestamp }
+    this.recordings = [];            // Array of recording history { id, timestamp, cardId, cardTitle, part, duration, wpm, audioData, transcript }
+    this.vocabMistakes = new Map();   // Map of word -> { count, lastMistake, context }
     this.streak = { current: 0, lastDate: null }; // Streak data
     this.difficulty = new Map();     // Map of topicId -> 'easy'|'medium'|'hard'
 
@@ -479,6 +546,16 @@ class App {
       if (diff) {
         this.difficulty = new Map(JSON.parse(diff));
       }
+
+      const recordings = localStorage.getItem('ielts-speaking-recordings');
+      if (recordings) {
+        this.recordings = JSON.parse(recordings);
+      }
+
+      const vocabMistakes = localStorage.getItem('ielts-speaking-vocab-mistakes');
+      if (vocabMistakes) {
+        this.vocabMistakes = new Map(JSON.parse(vocabMistakes));
+      }
     } catch (e) {
       console.warn('Could not load data:', e);
     }
@@ -500,6 +577,8 @@ class App {
       localStorage.setItem('ielts-speaking-history', JSON.stringify(this.history));
       localStorage.setItem('ielts-speaking-streak', JSON.stringify(this.streak));
       localStorage.setItem('ielts-speaking-difficulty', JSON.stringify([...this.difficulty]));
+      localStorage.setItem('ielts-speaking-recordings', JSON.stringify(this.recordings));
+      localStorage.setItem('ielts-speaking-vocab-mistakes', JSON.stringify([...this.vocabMistakes]));
     } catch (e) {
       console.warn('Could not save data:', e);
     }
@@ -599,6 +678,8 @@ class App {
       localStorage.removeItem('ielts-speaking-history');
       localStorage.removeItem('ielts-speaking-streak');
       localStorage.removeItem('ielts-speaking-difficulty');
+      localStorage.removeItem('ielts-speaking-recordings');
+      localStorage.removeItem('ielts-speaking-vocab-mistakes');
 
       this.settings = {
         theme: 'light',
@@ -613,6 +694,8 @@ class App {
       this.dailyChallenge = null;
       this.shuffleOrder = null;
       this.history = [];
+      this.recordings = [];
+      this.vocabMistakes = new Map();
       this.streak = { current: 0, lastDate: null };
       this.difficulty = new Map();
 
@@ -841,8 +924,20 @@ class App {
     // Clear data
     document.getElementById('clearDataBtn')?.addEventListener('click', () => this.clearData());
 
-    // Export vocabulary
-    document.getElementById('exportVocabBtn')?.addEventListener('click', () => this.exportVocab());
+    // Export vocabulary (CSV)
+    document.getElementById('exportVocabCSVBtn')?.addEventListener('click', () => this.exportVocabCSV());
+
+    // Export vocabulary (JSON)
+    document.getElementById('exportVocabJSONBtn')?.addEventListener('click', () => this.exportVocabJSON());
+
+    // Backup progress
+    document.getElementById('backupProgressBtn')?.addEventListener('click', () => this.backupProgress());
+
+    // Restore progress
+    document.getElementById('restoreProgressBtn')?.addEventListener('click', () => this.restoreProgress());
+
+    // Print cue card
+    document.getElementById('printCueCardBtn')?.addEventListener('click', () => this.printCueCard());
 
     // Save API key
     document.getElementById('saveApiKeyBtn')?.addEventListener('click', () => this.saveApiKey());
@@ -927,18 +1022,26 @@ class App {
 
     // Get final transcript
     var finalTranscript = this.sr.transcript || '';
+    var wpm = 0;
+    var durationSec = 0;
 
     if (blob) {
       // Show speaking rate
       var recordTimeEl = document.getElementById('recordTime');
       if (recordTimeEl) {
         var parts = recordTimeEl.textContent.split(':');
-        var durationSec = parseInt(parts[0]) * 60 + parseInt(parts[1] || 0);
+        durationSec = parseInt(parts[0]) * 60 + parseInt(parts[1] || 0);
         if (durationSec > 5) {
           this.showRateAnalyzer(durationSec);
+          // Calculate WPM
+          var estimatedWords = finalTranscript.trim().split(/\s+/).length || 200;
+          wpm = Math.round(estimatedWords / (durationSec / 60));
         }
       }
       this.playbackRecording(blob);
+
+      // Save recording to history
+      this.saveRecordingHistory(blob, durationSec, wpm, finalTranscript);
     }
 
     // Get current question text
@@ -952,14 +1055,15 @@ class App {
       }
     }
 
+    // Track vocabulary mistakes from transcript
+    if (finalTranscript) {
+      this.trackVocabularyMistakes(finalTranscript);
+      this.showTranscriptSummary(finalTranscript);
+    }
+
     // Store for AI feedback
     this.aiFeedback.lastTranscript = finalTranscript;
     this.aiFeedback.lastQuestion = questionText;
-
-    // Show transcript summary
-    if (finalTranscript) {
-      this.showTranscriptSummary(finalTranscript);
-    }
 
     // Request AI feedback
     if (this.settings.geminiApiKey && finalTranscript.trim().length > 10) {
@@ -1432,32 +1536,13 @@ class App {
       return '<div class="mistake-item"><label class="mistake-check-label"><input type="checkbox" class="mistake-check" data-mistake="' + i + '"><span class="mistake-check-custom"></span><span class="mistake-text">' + m.text + '</span></label><span class="mistake-part-tag">' + m.part + '</span></div>';
     }).join('');
 
-    // Build HTML
+    // Build HTML with enhanced features
     var html = '';
 
-    // === Stats Overview Row ===
-    html += '<div class="stats-overview">';
-    html += '<div class="stat-big-card stat-purple">';
-    html += '<div class="stat-big-icon">&#128200;</div>';
-    html += '<div class="stat-big-number">' + total + '</div>';
-    html += '<div class="stat-big-label">Total Sessions</div>';
-    html += '</div>';
-    html += '<div class="stat-big-card stat-green">';
-    html += '<div class="stat-big-icon">&#128293;</div>';
-    html += '<div class="stat-big-number">' + streak + '</div>';
-    html += '<div class="stat-big-label">Day Streak</div>';
-    html += '</div>';
-    html += '<div class="stat-big-card stat-yellow">';
-    html += '<div class="stat-big-icon">&#127942;</div>';
-    html += '<div class="stat-big-number">' + (p1Practiced + p2Practiced + p3Practiced) + '</div>';
-    html += '<div class="stat-big-label">Cards Practiced</div>';
-    html += '</div>';
-    html += '<div class="stat-big-card stat-red">';
-    html += '<div class="stat-big-icon">&#9200;</div>';
-    html += '<div class="stat-big-number">~' + Math.round(total * 2.5) + 'm</div>';
-    html += '<div class="stat-big-label">Est. Practice Time</div>';
-    html += '</div>';
-    html += '</div>';
+    // Add enhanced statistics at the top
+    const heatmapDays = this.getHeatmapData();
+    const weeklyData = this.getWeeklyStats();
+    html += this.buildEnhancedStatsHTML(total, streak, p1Practiced, p2Practiced, p3Practiced, p1Total, p2Total, p3Total, heatmapDays, weeklyData);
 
     // === XP & Level ===
     html += '<div class="stats-section">';
@@ -1468,50 +1553,6 @@ class App {
     html += '<div class="xp-bar-fill" style="width:' + (xpInLevel / xpToNext * 100) + '%"></div>';
     html += '</div>';
     html += '<div class="xp-text">' + xpInLevel + ' / ' + xpToNext + ' XP to Level ' + (level + 1) + '</div>';
-    html += '</div>';
-    html += '</div>';
-
-    // === Per-Part Progress ===
-    html += '<div class="stats-section">';
-    html += '<h2 class="stats-section-title">Part Progress</h2>';
-    html += '<div class="part-progress-grid">';
-
-    // Part 1
-    html += '<div class="part-progress-card">';
-    html += '<div class="part-progress-ring">';
-    html += '<svg width="80" height="80" viewBox="0 0 80 80">';
-    html += '<circle cx="40" cy="40" r="34" fill="none" stroke="var(--border)" stroke-width="6"/>';
-    html += '<circle cx="40" cy="40" r="34" fill="none" stroke="var(--accent)" stroke-width="6" stroke-dasharray="' + (Math.PI * 34 * 2) + '" stroke-dashoffset="' + (Math.PI * 34 * 2 * (1 - p1Practiced / p1Total)) + '" transform="rotate(-90 40 40)" stroke-linecap="round"/>';
-    html += '</svg>';
-    html += '<div class="part-progress-ring-text">' + p1Practiced + '/' + p1Total + '</div>';
-    html += '</div>';
-    html += '<div class="part-progress-info"><div class="part-progress-name">Part 1</div><div class="part-progress-sub">Topics</div></div>';
-    html += '</div>';
-
-    // Part 2
-    html += '<div class="part-progress-card">';
-    html += '<div class="part-progress-ring">';
-    html += '<svg width="80" height="80" viewBox="0 0 80 80">';
-    html += '<circle cx="40" cy="40" r="34" fill="none" stroke="var(--border)" stroke-width="6"/>';
-    html += '<circle cx="40" cy="40" r="34" fill="none" stroke="var(--accent)" stroke-width="6" stroke-dasharray="' + (Math.PI * 34 * 2) + '" stroke-dashoffset="' + (Math.PI * 34 * 2 * (1 - p2Practiced / p2Total)) + '" transform="rotate(-90 40 40)" stroke-linecap="round"/>';
-    html += '</svg>';
-    html += '<div class="part-progress-ring-text">' + p2Practiced + '/' + p2Total + '</div>';
-    html += '</div>';
-    html += '<div class="part-progress-info"><div class="part-progress-name">Part 2</div><div class="part-progress-sub">Cue Cards</div></div>';
-    html += '</div>';
-
-    // Part 3
-    html += '<div class="part-progress-card">';
-    html += '<div class="part-progress-ring">';
-    html += '<svg width="80" height="80" viewBox="0 0 80 80">';
-    html += '<circle cx="40" cy="40" r="34" fill="none" stroke="var(--border)" stroke-width="6"/>';
-    html += '<circle cx="40" cy="40" r="34" fill="none" stroke="var(--accent)" stroke-width="6" stroke-dasharray="' + (Math.PI * 34 * 2) + '" stroke-dashoffset="' + (Math.PI * 34 * 2 * (1 - p3Practiced / p3Total)) + '" transform="rotate(-90 40 40)" stroke-linecap="round"/>';
-    html += '</svg>';
-    html += '<div class="part-progress-ring-text">' + p3Practiced + '/' + p3Total + '</div>';
-    html += '</div>';
-    html += '<div class="part-progress-info"><div class="part-progress-name">Part 3</div><div class="part-progress-sub">Discussions</div></div>';
-    html += '</div>';
-
     html += '</div>';
     html += '</div>';
 
@@ -1556,6 +1597,19 @@ class App {
     html += '<div class="mistakes-section">' + mistakesHTML + '</div>';
     html += '</div>';
 
+    // === New Practice History Section ===
+    html += '<div class="stats-section">';
+    html += '<h2 class="stats-section-title">Practice History</h2>';
+    html += '<div class="stats-tabs">';
+    html += '<button class="stats-tab active" data-stat-tab="history">Recordings</button>';
+    html += '<button class="stats-tab" data-stat-tab="comparison">Compare</button>';
+    html += '<button class="stats-tab" data-stat-tab="words">Words to Practice</button>';
+    html += '</div>';
+    html += '<div class="stats-tab-content active" id="statsTab-history"><div id="historyContent"></div></div>';
+    html += '<div class="stats-tab-content" id="statsTab-comparison"><div id="comparisonContent"></div></div>';
+    html += '<div class="stats-tab-content" id="statsTab-words"><div id="wordsToPracticeContent"></div></div>';
+    html += '</div>';
+
     container.innerHTML = html;
 
     // Bind practice buttons on hard cards
@@ -1591,6 +1645,258 @@ class App {
         if (saved.includes(cb.dataset.mistake)) cb.checked = true;
       } catch (e) {}
     });
+
+    // Bind stats tabs
+    var self = this;
+    container.querySelectorAll('.stats-tab').forEach(function(tab) {
+      tab.addEventListener('click', function() {
+        container.querySelectorAll('.stats-tab').forEach(function(t) { t.classList.remove('active'); });
+        container.querySelectorAll('.stats-tab-content').forEach(function(c) { c.classList.remove('active'); });
+        tab.classList.add('active');
+        document.getElementById('statsTab-' + tab.dataset.statTab).classList.add('active');
+
+        // Render content for the active tab
+        if (tab.dataset.statTab === 'history') self.renderHistory();
+        else if (tab.dataset.statTab === 'comparison') self.renderComparison();
+        else if (tab.dataset.statTab === 'words') self.renderWordsToPractice();
+      });
+    });
+
+    // Bind chart toggle buttons
+    container.querySelectorAll('.chart-toggle-btn').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        container.querySelectorAll('.chart-toggle-btn').forEach(function(b) { b.classList.remove('active'); });
+        btn.classList.add('active');
+        var period = btn.dataset.period;
+        var chartContainer = document.getElementById('chartContainer');
+        if (chartContainer) {
+          var data = period === 'weekly' ? self.getWeeklyStats() : self.getMonthlyStats();
+          chartContainer.innerHTML = self.buildChartHTML(data);
+        }
+      });
+    });
+
+    // Render initial tab content
+    this.renderHistory();
+  }
+
+  /**
+   * Get heatmap data for calendar display
+   */
+  getHeatmapData() {
+    const today = new Date();
+    const days = [];
+    let activeDays = 0;
+    let thisWeek = 0;
+    let thisMonth = 0;
+
+    const startOfWeek = new Date(today);
+    startOfWeek.setDate(today.getDate() - today.getDay());
+    const startOfMonth = new Date(today.getFullYear(), today.getMonth(), 1);
+
+    for (let i = 89; i >= 0; i--) {
+      const date = new Date(today);
+      date.setDate(date.getDate() - i);
+      const sessions = this.getSessionsForDate(date);
+      days.push({ date, count: sessions.length, dateStr: date.toISOString().split('T')[0] });
+
+      if (sessions.length > 0) {
+        activeDays++;
+        if (date >= startOfWeek) thisWeek++;
+        if (date >= startOfMonth) thisMonth++;
+      }
+    }
+
+    return { days, activeDays, thisWeek, thisMonth };
+  }
+
+  /**
+   * Get sessions for a specific date
+   */
+  getSessionsForDate(date) {
+    const dateStr = date.toDateString();
+    return this.history.filter(h => new Date(h.timestamp).toDateString() === dateStr);
+  }
+
+  /**
+   * Build calendar heatmap HTML
+   */
+  buildCalendarHeatmapHTML(heatmapData) {
+    const { days } = heatmapData;
+    const dayLabels = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
+    const weeks = [];
+    let currentWeek = [];
+
+    const firstDayOfWeek = days[0].date.getDay();
+    for (let i = 0; i < firstDayOfWeek; i++) currentWeek.push(null);
+
+    days.forEach(day => {
+      currentWeek.push(day);
+      if (currentWeek.length === 7) {
+        weeks.push(currentWeek);
+        currentWeek = [];
+      }
+    });
+
+    if (currentWeek.length > 0) {
+      while (currentWeek.length < 7) currentWeek.push(null);
+      weeks.push(currentWeek);
+    }
+
+    let html = '<div class="cal-grid-enhanced"><div class="cal-row-label"></div>';
+    dayLabels.forEach(label => { html += '<div class="cal-row-label">' + label + '</div>'; });
+
+    weeks.forEach((week, weekIdx) => {
+      html += '<div class="cal-row-label"></div>';
+      week.forEach((day, dayIdx) => {
+        if (day === null) {
+          html += '<div class="cal-cell-enhanced" style="background:transparent;pointer-events:none"></div>';
+        } else {
+          const level = day.count === 0 ? 0 : day.count <= 1 ? 1 : day.count <= 3 ? 2 : 3;
+          const delay = (weekIdx * 7 + dayIdx) * 10;
+          html += '<div class="cal-cell-enhanced cal-level-' + level + ' animate" style="animation-delay:' + delay + 'ms" data-date="' + day.dateStr + '" data-count="' + day.count + '" title="' + day.dateStr + ': ' + day.count + ' sessions"></div>';
+        }
+      });
+    });
+
+    html += '</div><div class="cal-legend-enhanced"><span class="cal-legend-text">Less</span>';
+    html += '<span class="cal-cell-enhanced cal-level-0"></span>';
+    html += '<span class="cal-cell-enhanced cal-level-1"></span>';
+    html += '<span class="cal-cell-enhanced cal-level-2"></span>';
+    html += '<span class="cal-cell-enhanced cal-level-3"></span>';
+    html += '<span class="cal-legend-text">More</span></div>';
+
+    return html;
+  }
+
+  /**
+   * Get weekly stats for chart
+   */
+  getWeeklyStats() {
+    const data = [];
+    const today = new Date();
+    for (let i = 6; i >= 0; i--) {
+      const date = new Date(today);
+      date.setDate(today.getDate() - i);
+      const sessions = this.getSessionsForDate(date);
+      data.push({ label: date.toLocaleDateString('en-US', { weekday: 'short' }), count: sessions.length });
+    }
+    return data;
+  }
+
+  /**
+   * Get monthly stats for chart
+   */
+  getMonthlyStats() {
+    const data = [];
+    const today = new Date();
+    for (let i = 3; i >= 0; i--) {
+      const start = new Date(today.getFullYear(), today.getMonth() - i, 1);
+      const end = new Date(today.getFullYear(), today.getMonth() - i + 1, 0);
+      let count = 0;
+      this.history.forEach(h => {
+        const date = new Date(h.timestamp);
+        if (date >= start && date <= end) count++;
+      });
+      data.push({ label: start.toLocaleDateString('en-US', { month: 'short' }), count });
+    }
+    return data;
+  }
+
+  /**
+   * Build chart HTML
+   */
+  buildChartHTML(data) {
+    const maxCount = Math.max(...data.map(d => d.count), 1);
+    let html = '<div class="bar-chart">';
+    data.forEach((d, i) => {
+      const height = (d.count / maxCount) * 100;
+      html += '<div class="bar-item">';
+      html += '<div class="bar-value">' + d.count + '</div>';
+      html += '<div class="bar animate" style="height:' + height + 'px;animation-delay:' + (i * 50) + 'ms"></div>';
+      html += '<div class="bar-label">' + d.label + '</div></div>';
+    });
+    html += '</div>';
+    return html;
+  }
+
+  /**
+   * Build enhanced statistics HTML
+   */
+  buildEnhancedStatsHTML(total, streak, p1Practiced, p2Practiced, p3Practiced, p1Total, p2Total, p3Total, heatmapDays, weeklyData) {
+    const p1Percent = p1Total > 0 ? Math.round((p1Practiced / p1Total) * 100) : 0;
+    const p2Percent = p2Total > 0 ? Math.round((p2Practiced / p2Total) * 100) : 0;
+    const p3Percent = p3Total > 0 ? Math.round((p3Practiced / p3Total) * 100) : 0;
+
+    let html = '';
+
+    // Enhanced Stats Summary Row
+    html += '<div class="stats-summary-row">';
+    html += '<div class="summary-stat-card purple"><div class="summary-icon">&#128200;</div><div class="summary-number">' + total + '</div><div class="summary-label">Total Sessions</div></div>';
+    html += '<div class="summary-stat-card green"><div class="summary-icon">&#128293;</div><div class="summary-number">' + streak + '</div><div class="summary-label">Day Streak</div></div>';
+    html += '<div class="summary-stat-card yellow"><div class="summary-icon">&#127942;</div><div class="summary-number">' + (p1Practiced + p2Practiced + p3Practiced) + '</div><div class="summary-label">Cards Practiced</div></div>';
+    html += '<div class="summary-stat-card red"><div class="summary-icon">&#9200;</div><div class="summary-number">~' + Math.round(total * 2.5) + 'm</div><div class="summary-label">Est. Practice Time</div></div>';
+    html += '</div>';
+
+    // Streak Showcase
+    html += '<div class="streak-showcase"><div class="streak-header"><div class="streak-flames">';
+    for (let i = 0; i < Math.min(streak, 3); i++) html += '<span class="streak-flame">&#128293;</span>';
+    html += '</div><div><div class="streak-big-number">' + streak + '</div><div class="streak-days-label">Day Streak</div></div></div>';
+    html += '<div class="streak-milestones">';
+    const milestones = [
+      { days: 3, icon: '&#128536;', label: '3 Days' },
+      { days: 7, icon: '&#127804;', label: '7 Days' },
+      { days: 14, icon: '&#127758;', label: '14 Days' },
+      { days: 30, icon: '&#127770;', label: '30 Days' }
+    ];
+    milestones.forEach(m => {
+      html += '<div class="milestone"><span class="milestone-icon ' + (streak >= m.days ? 'achieved' : '') + '">' + m.icon + '</span><span class="milestone-label">' + m.label + '</span></div>';
+    });
+    html += '</div></div>';
+
+    // Enhanced Calendar Heatmap
+    html += '<div class="enhanced-calendar-section">';
+    html += '<div class="calendar-header-row"><span class="calendar-section-title">90-Day Activity</span><span class="calendar-summary">' + heatmapDays.activeDays + ' active days</span></div>';
+    html += '<div class="calendar-grid-wrapper">' + this.buildCalendarHeatmapHTML(heatmapDays) + '</div></div>';
+
+    // Weekly/Monthly Stats Chart
+    html += '<div class="stats-chart-section">';
+    html += '<div class="chart-header"><span class="chart-title">Practice Activity</span>';
+    html += '<div class="chart-toggle"><button class="chart-toggle-btn active" data-period="weekly">Weekly</button><button class="chart-toggle-btn" data-period="monthly">Monthly</button></div></div>';
+    html += '<div id="chartContainer">' + this.buildChartHTML(weeklyData) + '</div>';
+    html += '<div class="activity-summary">';
+    html += '<div class="activity-stat"><div class="activity-stat-value">' + heatmapDays.thisWeek + '</div><div class="activity-stat-label">This Week</div></div>';
+    html += '<div class="activity-stat"><div class="activity-stat-value">' + heatmapDays.thisMonth + '</div><div class="activity-stat-label">This Month</div></div>';
+    html += '<div class="activity-stat"><div class="activity-stat-value">' + (total > 0 ? Math.round(total / Math.max(heatmapDays.activeDays, 1)) : 0) + '</div><div class="activity-stat-label">Avg/Day</div></div>';
+    html += '</div></div>';
+
+    // Enhanced Progress Rings
+    html += '<div class="enhanced-progress-section"><h2 class="stats-section-title">Part Progress</h2><div class="enhanced-progress-grid">';
+
+    const p1Circ = 2 * Math.PI * 50;
+    html += '<div class="enhanced-progress-card"><div class="enhanced-ring-container"><svg width="120" height="120" viewBox="0 0 120 120">';
+    html += '<circle class="enhanced-ring-bg" cx="60" cy="60" r="50" fill="none" stroke="var(--bg-tertiary)" stroke-width="8"/>';
+    html += '<circle class="enhanced-ring-progress p1" cx="60" cy="60" r="50" fill="none" stroke="var(--accent)" stroke-width="8" stroke-dasharray="' + p1Circ + '" stroke-dashoffset="' + (p1Circ * (1 - p1Percent / 100)) + '"/></svg>';
+    html += '<div class="enhanced-ring-center"><span class="enhanced-ring-percent">' + p1Percent + '%</span><span class="enhanced-ring-label">Complete</span></div></div>';
+    html += '<div class="enhanced-progress-info"><div class="enhanced-part-name">Part 1</div><div class="enhanced-part-detail">' + p1Practiced + ' / ' + p1Total + ' Topics</div></div></div>';
+
+    const p2Circ = 2 * Math.PI * 50;
+    html += '<div class="enhanced-progress-card"><div class="enhanced-ring-container"><svg width="120" height="120" viewBox="0 0 120 120">';
+    html += '<circle class="enhanced-ring-bg" cx="60" cy="60" r="50" fill="none" stroke="var(--bg-tertiary)" stroke-width="8"/>';
+    html += '<circle class="enhanced-ring-progress p2" cx="60" cy="60" r="50" fill="none" stroke="var(--success)" stroke-width="8" stroke-dasharray="' + p2Circ + '" stroke-dashoffset="' + (p2Circ * (1 - p2Percent / 100)) + '"/></svg>';
+    html += '<div class="enhanced-ring-center"><span class="enhanced-ring-percent">' + p2Percent + '%</span><span class="enhanced-ring-label">Complete</span></div></div>';
+    html += '<div class="enhanced-progress-info"><div class="enhanced-part-name">Part 2</div><div class="enhanced-part-detail">' + p2Practiced + ' / ' + p2Total + ' Cue Cards</div></div></div>';
+
+    const p3Circ = 2 * Math.PI * 50;
+    html += '<div class="enhanced-progress-card"><div class="enhanced-ring-container"><svg width="120" height="120" viewBox="0 0 120 120">';
+    html += '<circle class="enhanced-ring-bg" cx="60" cy="60" r="50" fill="none" stroke="var(--bg-tertiary)" stroke-width="8"/>';
+    html += '<circle class="enhanced-ring-progress p3" cx="60" cy="60" r="50" fill="none" stroke="var(--warning)" stroke-width="8" stroke-dasharray="' + p3Circ + '" stroke-dashoffset="' + (p3Circ * (1 - p3Percent / 100)) + '"/></svg>';
+    html += '<div class="enhanced-ring-center"><span class="enhanced-ring-percent">' + p3Percent + '%</span><span class="enhanced-ring-label">Complete</span></div></div>';
+    html += '<div class="enhanced-progress-info"><div class="enhanced-part-name">Part 3</div><div class="enhanced-part-detail">' + p3Practiced + ' / ' + p3Total + ' Discussions</div></div></div>';
+
+    html += '</div></div>';
+
+    return html;
   }
 
   getAchievements() {
@@ -2063,7 +2369,8 @@ class App {
     container.innerHTML = html;
 
     // Bind click events
-    container.querySelectorAll('.due-card-item').forEach(function(item) {
+    container.querySelectorAll('.due-card-item').forEach(function(item, idx) {
+      item.style.animationDelay = (idx * 50) + 'ms';
       item.addEventListener('click', function() {
         var id = item.dataset.id;
         if (id.startsWith('p1-')) {
@@ -2078,12 +2385,15 @@ class App {
           setTimeout(function() { self.startPart2(idx >= 0 ? idx : 0); }, 100);
         } else if (id.startsWith('p3-')) {
           var discId = id.replace('p3-', '');
-          var idx = IELTS_DATA.part3.findIndex(function(c) { return c.id === discId; });
+          var idx = IELTS_DATA.part3.findEach(function(c) { return c.id === discId; });
           self.navigate('part3');
           setTimeout(function() { self.startPart3(idx >= 0 ? idx : 0); }, 100);
         }
       });
     });
+
+    // Add stagger animation class
+    container.classList.add('stagger-grid');
   }
 
   /**
@@ -2196,7 +2506,7 @@ class App {
 
     const topics = IELTS_DATA.part1;
     grid.innerHTML = topics.map((topic, idx) => `
-      <div class="topic-card ${this.isPracticed(topic.id) ? 'is-practiced' : ''}" data-id="${topic.id}" data-index="${idx}">
+      <div class="topic-card ${this.isPracticed(topic.id) ? 'is-practiced' : ''}" data-id="${topic.id}" data-index="${idx}" style="animation-delay: ${idx * 50}ms">
         <div class="topic-card-header">
           <div class="topic-card-title">${topic.title}</div>
           <button class="bookmark-btn ${this.isBookmarked(topic.id) ? 'active' : ''}" aria-label="Bookmark">
@@ -2228,6 +2538,9 @@ class App {
         </div>
       </div>
     `).join('');
+
+    // Add stagger animation
+    grid.classList.add('stagger-grid');
   }
 
   /**
@@ -2258,7 +2571,7 @@ class App {
 
     grid.innerHTML = cards.map((card, idx) => {
       const tags = this.getCardTags(card.title);
-      return '<div class="topic-card' + (this.isPracticed(card.id) ? ' is-practiced' : '') + '" data-id="' + card.id + '" data-index="' + idx + '" data-tags="' + tags.join(',') + '">' +
+      return '<div class="topic-card' + (this.isPracticed(card.id) ? ' is-practiced' : '') + '" data-id="' + card.id + '" data-index="' + idx + '" data-tags="' + tags.join(',') + '" style="animation-delay: ' + (idx * 50) + 'ms">' +
         '<div class="topic-card-header">' +
           '<div class="topic-card-title">' + card.title + '</div>' +
           '<button class="bookmark-btn' + (this.isBookmarked(card.id) ? ' active' : '') + '" aria-label="Bookmark">' +
@@ -2279,6 +2592,9 @@ class App {
         '</div>' +
       '</div>';
     }).join('');
+
+    // Add stagger animation
+    grid.classList.add('stagger-grid');
   }
 
   /**
@@ -2306,7 +2622,7 @@ class App {
     }
 
     grid.innerHTML = topics.map((topic, idx) => {
-      return '<div class="topic-card' + (this.isPracticed(topic.id) ? ' is-practiced' : '') + '" data-id="' + topic.id + '" data-index="' + idx + '" data-tags="' + topic.theme + '">' +
+      return '<div class="topic-card' + (this.isPracticed(topic.id) ? ' is-practiced' : '') + '" data-id="' + topic.id + '" data-index="' + idx + '" data-tags="' + topic.theme + '" style="animation-delay: ' + (idx * 50) + 'ms">' +
         '<div class="topic-card-header">' +
           '<div class="topic-card-title">' + topic.title + '</div>' +
           '<div class="topic-card-header-right">' +
@@ -2329,6 +2645,9 @@ class App {
         '</div>' +
       '</div>';
     }).join('');
+
+    // Add stagger animation
+    grid.classList.add('stagger-grid');
   }
 
   /**
@@ -2595,8 +2914,20 @@ class App {
    */
   closePractice() {
     this.practiceOpen = false;
-    this.overlay?.classList.remove('active');
-    document.body.style.overflow = '';
+
+    // Animate modal closing
+    const modal = this.overlay?.querySelector('.practice-modal');
+    if (modal) {
+      modal.classList.add('closing');
+      setTimeout(() => {
+        this.overlay?.classList.remove('active');
+        modal.classList.remove('closing');
+        document.body.style.overflow = '';
+      }, 200);
+    } else {
+      this.overlay?.classList.remove('active');
+      document.body.style.overflow = '';
+    }
 
     // Stop timer
     this.timer.pause();
@@ -3070,36 +3401,265 @@ class App {
   }
 
   // ==========================================
-  // EXPORT VOCABULARY
+  // EXPORT/IMPORT FUNCTIONS
   // ==========================================
 
-  exportVocab() {
-    var lines = ['IELTS Speaking Practice — Vocabulary Export', 'Generated: ' + new Date().toLocaleString(), ''];
-
+  /**
+   * Export vocabulary to CSV format
+   */
+  exportVocabCSV() {
+    var vocabData = [];
     this.vocab.forEach(function(words, itemId) {
-      if (words.length > 0) {
-        lines.push('--- ' + itemId + ' ---');
-        words.forEach(function(w) {
-          lines.push('  - ' + w);
-        });
-        lines.push('');
-      }
+      words.forEach(function(word) {
+        vocabData.push({ itemId: itemId, word: word, addedAt: new Date().toISOString() });
+      });
     });
 
-    if (lines.length === 3) {
-      alert('No vocabulary saved yet.');
+    if (vocabData.length === 0) {
+      this.showNotification(this.t('settings.import.error') || 'No vocabulary to export', 'error');
       return;
     }
 
-    lines.push('Total words: ' + Array.from(this.vocab.values()).reduce(function(s, arr) { return s + arr.length; }, 0));
+    // Create CSV content
+    var csv = 'Item ID,Word,Added At\n';
+    vocabData.forEach(function(row) {
+      var escaped = row.word.replace(/"/g, '""');
+      csv += '"' + row.itemId + '","' + escaped + '","' + row.addedAt + '"\n';
+    });
 
-    var blob = new Blob([lines.join('\n')], { type: 'text/plain' });
+    var blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
     var url = URL.createObjectURL(blob);
     var a = document.createElement('a');
     a.href = url;
-    a.download = 'ielts-vocab-' + new Date().toISOString().split('T')[0] + '.txt';
+    a.download = 'ielts-vocab-' + new Date().toISOString().split('T')[0] + '.csv';
     a.click();
     URL.revokeObjectURL(url);
+
+    this.showNotification(this.t('settings.backup.success'), 'success');
+  }
+
+  /**
+   * Export vocabulary to JSON format
+   */
+  exportVocabJSON() {
+    var vocabData = [];
+    this.vocab.forEach(function(words, itemId) {
+      words.forEach(function(word) {
+        vocabData.push({ itemId: itemId, word: word, addedAt: new Date().toISOString() });
+      });
+    });
+
+    if (vocabData.length === 0) {
+      this.showNotification(this.t('settings.import.error') || 'No vocabulary to export', 'error');
+      return;
+    }
+
+    var exportData = {
+      type: 'vocabulary',
+      exportedAt: new Date().toISOString(),
+      version: '1.0',
+      data: vocabData
+    };
+
+    var blob = new Blob([JSON.stringify(exportData, null, 2)], { type: 'application/json' });
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement('a');
+    a.href = url;
+    a.download = 'ielts-vocab-' + new Date().toISOString().split('T')[0] + '.json';
+    a.click();
+    URL.revokeObjectURL(url);
+
+    this.showNotification(this.t('settings.backup.success'), 'success');
+  }
+
+  /**
+   * Backup all progress data
+   */
+  backupProgress() {
+    var backupData = {
+      type: 'ielts-speaking-backup',
+      version: '1.0',
+      exportedAt: new Date().toISOString(),
+      settings: this.settings,
+      practiced: [...this.practiced],
+      bookmarks: [...this.bookmarks],
+      vocab: [...this.vocab],
+      dailyChallenge: this.dailyChallenge,
+      shuffleOrder: this.shuffleOrder,
+      history: this.history,
+      streak: this.streak,
+      difficulty: [...this.difficulty]
+    };
+
+    var blob = new Blob([JSON.stringify(backupData, null, 2)], { type: 'application/json' });
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement('a');
+    a.href = url;
+    a.download = 'ielts-backup-' + new Date().toISOString().split('T')[0] + '.json';
+    a.click();
+    URL.revokeObjectURL(url);
+
+    this.showNotification(this.t('settings.backup.success'), 'success');
+  }
+
+  /**
+   * Restore progress from backup file
+   */
+  restoreProgress() {
+    var input = document.createElement('input');
+    input.type = 'file';
+    input.accept = '.json';
+
+    var self = this;
+    input.addEventListener('change', function(e) {
+      var file = e.target.files[0];
+      if (!file) return;
+
+      var reader = new FileReader();
+      reader.onload = function(e) {
+        try {
+          var data = JSON.parse(e.target.result);
+
+          // Validate backup file
+          if (!data.type || !data.type.includes('ielts-speaking')) {
+            throw new Error('Invalid backup file format');
+          }
+
+          // Restore data
+          if (data.settings) {
+            self.settings = { ...self.settings, ...data.settings };
+            self.saveSettings();
+          }
+          if (data.practiced) {
+            self.practiced = new Set(data.practiced);
+            localStorage.setItem('ielts-speaking-practiced', JSON.stringify(data.practiced));
+          }
+          if (data.bookmarks) {
+            self.bookmarks = new Set(data.bookmarks);
+            localStorage.setItem('ielts-speaking-bookmarks', JSON.stringify(data.bookmarks));
+          }
+          if (data.vocab) {
+            self.vocab = new Map(data.vocab);
+            localStorage.setItem('ielts-speaking-vocab', JSON.stringify([...self.vocab]));
+          }
+          if (data.dailyChallenge) {
+            self.dailyChallenge = data.dailyChallenge;
+            localStorage.setItem('ielts-speaking-daily', JSON.stringify(data.dailyChallenge));
+          }
+          if (data.shuffleOrder) {
+            self.shuffleOrder = data.shuffleOrder;
+          }
+          if (data.history) {
+            self.history = data.history;
+            localStorage.setItem('ielts-speaking-history', JSON.stringify(data.history));
+          }
+          if (data.streak) {
+            self.streak = data.streak;
+            localStorage.setItem('ielts-speaking-streak', JSON.stringify(data.streak));
+          }
+          if (data.difficulty) {
+            self.difficulty = new Map(data.difficulty);
+            localStorage.setItem('ielts-speaking-difficulty', JSON.stringify([...self.difficulty]));
+          }
+
+          // Re-render all pages
+          self.renderAllPages();
+          self.applyTheme(self.settings.theme);
+          self.applyTranslations();
+
+          self.showNotification(self.t('settings.import.success'), 'success');
+        } catch (err) {
+          console.error('Restore failed:', err);
+          self.showNotification(self.t('settings.import.error'), 'error');
+        }
+      };
+      reader.onerror = function() {
+        self.showNotification(self.t('settings.import.error'), 'error');
+      };
+      reader.readAsText(file);
+    });
+
+    input.click();
+  }
+
+  /**
+   * Print current cue card (generates printable format)
+   */
+  printCueCard() {
+    var item = this.currentItems[this.currentIndex];
+    if (!item) {
+      this.showNotification('No cue card selected', 'error');
+      return;
+    }
+
+    // Create printable content
+    var printContent = '<!DOCTYPE html><html><head><title>IELTS Cue Card</title>';
+    printContent += '<style>';
+    printContent += 'body{font-family:Arial,sans-serif;padding:40px;max-width:800px;margin:0 auto;line-height:1.6;}';
+    printContent += 'h1{font-size:24px;margin-bottom:10px;}';
+    printContent += '.cue{background:#f5f5f5;padding:20px;border-radius:8px;white-space:pre-wrap;font-size:16px;margin:20px 0;}';
+    printContent += '.meta{color:#666;font-size:14px;margin-bottom:20px;}';
+    printContent += '.keywords{background:#e8f4fd;padding:15px;border-radius:8px;margin:20px 0;}';
+    printContent += '.notes{border:1px dashed #ccc;padding:20px;min-height:200px;margin:20px 0;}';
+    printContent += '.footer{color:#999;font-size:12px;margin-top:40px;text-align:center;}';
+    printContent += '@media print{body{padding:20px;}.notes{min-height:150px;}}';
+    printContent += '</style></head><body>';
+
+    printContent += '<h1>IELTS Speaking Part 2 — Cue Card</h1>';
+    printContent += '<div class="meta">ID: ' + item.id + '</div>';
+    printContent += '<div class="cue">' + (item.cue || item.text || '') + '</div>';
+
+    // Include vocabulary if available
+    var vocabWords = this.vocab.get(item.id);
+    if (vocabWords && vocabWords.length > 0) {
+      printContent += '<div class="keywords"><strong>Your Vocabulary:</strong><br>' + vocabWords.join(', ') + '</div>';
+    }
+
+    printContent += '<div class="notes"><strong>Your Notes:</strong><br><br><br><br></div>';
+    printContent += '<div class="footer">IELTS Speaking Practice App — Printed ' + new Date().toLocaleString() + '</div>';
+    printContent += '</body></html>';
+
+    var printWindow = window.open('', '_blank');
+    if (printWindow) {
+      printWindow.document.write(printContent);
+      printWindow.document.close();
+      printWindow.onload = function() {
+        printWindow.print();
+      };
+    } else {
+      this.showNotification('Unable to open print window. Please allow pop-ups.', 'error');
+    }
+  }
+
+  /**
+   * Show notification message
+   */
+  showNotification(message, type) {
+    var container = document.getElementById('notificationContainer');
+    if (!container) {
+      container = document.createElement('div');
+      container.id = 'notificationContainer';
+      container.style.cssText = 'position:fixed;top:20px;right:20px;z-index:9999;max-width:300px;';
+      document.body.appendChild(container);
+    }
+
+    var notification = document.createElement('div');
+    notification.style.cssText = 'padding:12px 20px;margin-bottom:10px;border-radius:8px;font-size:14px;box-shadow:0 4px 12px rgba(0,0,0,0.15);animation:slideIn 0.3s ease;';
+    notification.style.background = type === 'error' ? '#fee2e2' : type === 'success' ? '#d1fae5' : '#e0e7ff';
+    notification.style.color = type === 'error' ? '#991b1b' : type === 'success' ? '#065f46' : '#3730a3';
+    notification.textContent = message;
+
+    container.appendChild(notification);
+
+    // Auto-remove after 3 seconds
+    setTimeout(function() {
+      notification.style.animation = 'fadeOut 0.3s ease';
+      setTimeout(function() {
+        if (notification.parentNode) {
+          notification.parentNode.removeChild(notification);
+        }
+      }, 300);
+    }, 3000);
   }
 
   // ==========================================
@@ -3307,19 +3867,579 @@ class App {
       panel.classList.add('hidden');
     }
   }
+
+  // ==========================================
+  // RECORDING HISTORY
+  // ==========================================
+
+  /**
+   * Save recording to history
+   */
+  saveRecordingHistory(blob, durationSec, wpm, transcript) {
+    var item = this.currentItems[this.currentIndex];
+    var recording = {
+      id: Date.now(),
+      timestamp: new Date().toISOString(),
+      cardId: item ? (item.topicName || item.id) : 'unknown',
+      cardTitle: item ? item.topicName : 'Unknown',
+      part: this.currentPart || 'unknown',
+      duration: durationSec,
+      wpm: wpm,
+      transcript: transcript || ''
+    };
+
+    // Convert blob to base64 for storage
+    var reader = new FileReader();
+    var self = this;
+    reader.onloadend = function() {
+      recording.audioData = reader.result;
+      self.recordings.push(recording);
+      // Keep only last 100 recordings
+      if (self.recordings.length > 100) {
+        self.recordings = self.recordings.slice(-100);
+      }
+      self.saveAllData();
+    };
+    reader.readAsDataURL(blob);
+  }
+
+  /**
+   * Delete a recording from history
+   */
+  deleteRecording(recordingId) {
+    if (!confirm('Delete this recording?')) return;
+    this.recordings = this.recordings.filter(function(r) { return r.id !== recordingId; });
+    this.saveAllData();
+    this.renderHistory();
+  }
+
+  /**
+   * Play a recorded session
+   */
+  playRecording(recordingId) {
+    var recording = this.recordings.find(function(r) { return r.id === recordingId; });
+    if (!recording || !recording.audioData) return;
+
+    var audio = new Audio(recording.audioData);
+    audio.controls = true;
+
+    // Create or show playback modal
+    var overlay = document.getElementById('recordingPlaybackOverlay');
+    if (!overlay) {
+      var html = '<div class="recording-playback-overlay" id="recordingPlaybackOverlay"><div class="recording-playback-modal"><div class="recording-playback-header"><h3>Playing Recording</h3><button class="close-playback-btn" id="closePlaybackBtn"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 5l10 10M15 5L5 15"/></svg></button></div><div class="recording-playback-info" id="playbackInfo"></div><div class="recording-playback-audio" id="playbackAudioContainer"></div><div class="recording-playback-transcript" id="playbackTranscript"></div></div></div>';
+      document.body.insertAdjacentHTML('beforeend', html);
+      overlay = document.getElementById('recordingPlaybackOverlay');
+      document.getElementById('closePlaybackBtn').addEventListener('click', function() { App.closeRecordingPlayback(); });
+      overlay.addEventListener('click', function(e) { if (e.target === overlay) App.closeRecordingPlayback(); });
+    }
+
+    // Populate info
+    var infoEl = document.getElementById('playbackInfo');
+    var audioEl = document.getElementById('playbackAudioContainer');
+    var transcriptEl = document.getElementById('playbackTranscript');
+
+    var d = new Date(recording.timestamp);
+    var dateStr = d.toLocaleDateString('en-US', { weekday: 'long', month: 'short', day: 'numeric', year: 'numeric' });
+    var timeStr = d.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
+
+    infoEl.innerHTML = '<div class="playback-info-card"><div class="playback-info-part">' + (recording.part || 'Unknown').toUpperCase() + '</div><div class="playback-info-title">' + recording.cardTitle + '</div><div class="playback-info-meta"><span>' + dateStr + ' at ' + timeStr + '</span><span>' + Math.floor(recording.duration / 60) + ':' + String(recording.duration % 60).padStart(2, '0') + '</span><span>' + recording.wpm + ' WPM</span></div></div>';
+
+    audio.style.width = '100%';
+    audio.style.height = '50px';
+    audioEl.innerHTML = '';
+    audioEl.appendChild(audio);
+
+    if (recording.transcript) {
+      transcriptEl.innerHTML = '<div class="playback-transcript-title">Transcript</div><div class="playback-transcript-text">' + recording.transcript + '</div>';
+      transcriptEl.style.display = 'block';
+    } else {
+      transcriptEl.style.display = 'none';
+    }
+
+    overlay.style.display = 'flex';
+    audio.play().catch(function(e) { console.warn('Audio playback failed:', e); });
+  }
+
+  /**
+   * Close recording playback modal
+   */
+  closeRecordingPlayback() {
+    var overlay = document.getElementById('recordingPlaybackOverlay');
+    if (overlay) {
+      overlay.style.display = 'none';
+      var audio = overlay.querySelector('audio');
+      if (audio) audio.pause();
+    }
+  }
+
+  // ==========================================
+  // VOCABULARY MISTAKES TRACKING
+  // ==========================================
+
+  /**
+   * Track vocabulary mistakes from transcript
+   */
+  trackVocabularyMistakes(transcript) {
+    if (!transcript) return;
+
+    // Words/phrases that commonly cause issues in IELTS speaking
+    var problematicPatterns = [
+      /\bvery\s+(good|nice|great|amazing)\b/gi,
+      /\b(good|nice|great)\b/gi,
+      /\ba\s+lot\b/gi,
+      /\bimportant\b/gi,
+      /\bgonna\b/gi,
+      /\bwanna\b/gi,
+      /\bgotta\b/gi,
+      /\b(um|uh|you\s+know|like|basically|actually)\b/gi,
+      /\bI\s+think\s+that\b/gi,
+      /\bthere\s+is\b/gi,
+      /\bthere\'s\b/gi,
+      /\bI\s+would\s+like\s+to\b/gi
+    ];
+
+    var self = this;
+    problematicPatterns.forEach(function(pattern) {
+      var matches = transcript.match(pattern);
+      if (matches) {
+        matches.forEach(function(match) {
+          var word = match.toLowerCase().trim();
+          if (self.vocabMistakes.has(word)) {
+            var existing = self.vocabMistakes.get(word);
+            existing.count++;
+            existing.lastMistake = new Date().toISOString();
+          } else {
+            self.vocabMistakes.set(word, {
+              count: 1,
+              lastMistake: new Date().toISOString(),
+              context: transcript.substring(0, 100)
+            });
+          }
+        });
+      }
+    });
+  }
+
+  /**
+   * Get top problematic vocabulary
+   */
+  getTopVocabularyMistakes(limit) {
+    limit = limit || 10;
+    var mistakes = Array.from(this.vocabMistakes.entries());
+    mistakes.sort(function(a, b) { return b[1].count - a[1].count; });
+    return mistakes.slice(0, limit);
+  }
+
+  // ==========================================
+  // HISTORY PAGE RENDERING
+  // ==========================================
+
+  /**
+   * Render the History tab in Statistics
+   */
+  renderHistory() {
+    var container = document.getElementById('historyContent');
+    if (!container) return;
+
+    if (this.recordings.length === 0) {
+      container.innerHTML = '<div class="history-empty"><div class="history-empty-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg></div><h3>No Recording History</h3><p>Start recording your practice sessions to see them here.</p><p class="hint">Click the Record button during practice to save your recordings.</p></div>';
+      return;
+    }
+
+    var html = '';
+    var totalDuration = this.recordings.reduce(function(sum, r) { return sum + (r.duration || 0); }, 0);
+    var avgWpm = this.recordings.length > 0 ? Math.round(this.recordings.reduce(function(sum, r) { return sum + (r.wpm || 0); }, 0) / this.recordings.length) : 0;
+
+    html += '<div class="history-summary"><div class="history-stat"><div class="history-stat-value">' + this.recordings.length + '</div><div class="history-stat-label">Recordings</div></div><div class="history-stat"><div class="history-stat-value">' + Math.floor(totalDuration / 60) + 'm</div><div class="history-stat-label">Total Time</div></div><div class="history-stat"><div class="history-stat-value">' + avgWpm + '</div><div class="history-stat-label">Avg WPM</div></div><div class="history-stat"><div class="history-stat-value">' + this.vocabMistakes.size + '</div><div class="history-stat-label">Words to Practice</div></div></div>';
+
+    // Group recordings by date
+    var grouped = {};
+    var self = this;
+    this.recordings.slice().reverse().forEach(function(r) {
+      var d = new Date(r.timestamp);
+      var dateKey = d.toDateString();
+      if (!grouped[dateKey]) grouped[dateKey] = [];
+      grouped[dateKey].push(r);
+    });
+
+    html += '<div class="history-groups">';
+    Object.keys(grouped).forEach(function(dateKey) {
+      var d = new Date(dateKey);
+      var dateLabel = d.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' });
+      var isToday = d.toDateString() === new Date().toDateString();
+      var isYesterday = d.toDateString() === new Date(Date.now() - 86400000).toDateString();
+      if (isToday) dateLabel = 'Today';
+      else if (isYesterday) dateLabel = 'Yesterday';
+
+      html += '<div class="history-group"><div class="history-group-header">' + dateLabel + '</div><div class="history-group-items">';
+      grouped[dateKey].forEach(function(r) {
+        html += self.renderHistoryItem(r);
+      });
+      html += '</div></div>';
+    });
+    html += '</div>';
+
+    container.innerHTML = html;
+
+    // Bind delete buttons
+    var deleteBtns = container.querySelectorAll('.delete-recording-btn');
+    deleteBtns.forEach(function(btn) {
+      btn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        var id = parseInt(btn.dataset.id);
+        self.deleteRecording(id);
+      });
+    });
+
+    // Bind play buttons
+    var playBtns = container.querySelectorAll('.play-recording-btn');
+    playBtns.forEach(function(btn) {
+      btn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        var id = parseInt(btn.dataset.id);
+        self.playRecording(id);
+      });
+    });
+  }
+
+  /**
+   * Render a single history item
+   */
+  renderHistoryItem(recording) {
+    var d = new Date(recording.timestamp);
+    var timeStr = d.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
+    var durationStr = recording.duration ? Math.floor(recording.duration / 60) + ':' + String(recording.duration % 60).padStart(2, '0') : '--:--';
+    var wpmStr = recording.wpm || '--';
+
+    return '<div class="history-item"><div class="history-item-main"><div class="history-item-part">' + (recording.part || 'Unknown').toUpperCase() + '</div><div class="history-item-info"><div class="history-item-title">' + (recording.cardTitle || 'Unknown Card') + '</div><div class="history-item-meta"><span>' + timeStr + '</span><span>' + durationStr + '</span><span>' + wpmStr + ' WPM</span></div></div></div><div class="history-item-actions"><button class="btn btn-icon play-recording-btn" data-id="' + recording.id + '" title="Play"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="5,3 19,10 5,17"/></svg></button><button class="btn btn-icon delete-recording-btn" data-id="' + recording.id + '" title="Delete"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 5h8M5 5l1 11h8l1-11M10 9v4M8 11h4"/></svg></button></div></div>';
+  }
+
+  // ==========================================
+  // COMPARISON VIEW
+  // ==========================================
+
+  /**
+   * Render comparison view
+   */
+  renderComparison() {
+    var container = document.getElementById('comparisonContent');
+    if (!container) return;
+
+    if (this.recordings.length < 2) {
+      container.innerHTML = '<div class="comparison-empty"><div class="comparison-empty-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v14h14M7 14v-4M11 14V8M15 14v-6"/></svg></div><h3>Not Enough Data</h3><p>Record at least 2 practice sessions to compare your progress over time.</p></div>';
+      return;
+    }
+
+    var wpmData = this.recordings.slice(-20).map(function(r, i) {
+      return { index: i, wpm: r.wpm || 0, date: new Date(r.timestamp).toLocaleDateString('en-US', { month: 'short', day: 'numeric' }), part: r.part };
+    });
+
+    var avgWpm = Math.round(wpmData.reduce(function(s, d) { return s + d.wpm; }, 0) / wpmData.length) || 0;
+    var firstWpm = wpmData[0] ? wpmData[0].wpm : 0;
+    var lastWpm = wpmData[wpmData.length - 1] ? wpmData[wpmData.length - 1].wpm : 0;
+    var wpmChange = firstWpm > 0 ? lastWpm - firstWpm : 0;
+
+    var html = '<div class="comparison-header"><h3>Speaking Rate Comparison</h3><p>Track your WPM improvement over recent sessions</p></div>';
+    html += '<div class="comparison-summary"><div class="comparison-stat"><div class="comparison-stat-label">Average WPM</div><div class="comparison-stat-value">' + avgWpm + '</div></div><div class="comparison-stat"><div class="comparison-stat-label">First Session</div><div class="comparison-stat-value">' + firstWpm + '</div></div><div class="comparison-stat"><div class="comparison-stat-label">Latest Session</div><div class="comparison-stat-value">' + lastWpm + '</div></div><div class="comparison-stat ' + (wpmChange >= 0 ? 'positive' : 'negative') + '"><div class="comparison-stat-label">Change</div><div class="comparison-stat-value">' + (wpmChange >= 0 ? '+' : '') + wpmChange + '</div></div></div>';
+
+    html += '<div class="comparison-chart"><div class="comparison-chart-title">WPM Trend (Last 20 Sessions)</div><div class="comparison-chart-bars">';
+    wpmData.forEach(function(d) {
+      var height = Math.max(10, Math.min(100, (d.wpm / 150) * 100));
+      var barClass = d.wpm < 80 ? 'slow' : d.wpm > 140 ? 'fast' : 'good';
+      html += '<div class="comparison-bar-wrap" title="' + d.date + ': ' + d.wpm + ' WPM"><div class="comparison-bar ' + barClass + '" style="height: ' + height + '%"></div><div class="comparison-bar-label">' + d.wpm + '</div></div>';
+    });
+    html += '</div><div class="comparison-chart-legend"><span class="legend-item"><span class="legend-dot slow"></span> Slow</span><span class="legend-item"><span class="legend-dot good"></span> Good</span><span class="legend-item"><span class="legend-dot fast"></span> Fast</span></div></div>';
+
+    html += '<div class="comparison-tips"><h4>Tips to Improve</h4><ul>';
+    if (avgWpm < 100) html += '<li>Aim for 100-120 WPM for optimal pacing</li>';
+    if (avgWpm > 140) html += '<li>Slow down slightly to improve clarity and coherence</li>';
+    if (wpmChange < 0 && wpmData.length > 5) html += '<li>Your pace has decreased - consider practicing more</li>';
+    html += '<li>Record regularly and compare your progress weekly</li></ul></div>';
+
+    container.innerHTML = html;
+  }
+
+  // ==========================================
+  // WORDS TO PRACTICE
+  // ==========================================
+
+  /**
+   * Render words to practice section
+   */
+  renderWordsToPractice() {
+    var container = document.getElementById('wordsToPracticeContent');
+    if (!container) return;
+
+    var mistakes = this.getTopVocabularyMistakes(20);
+
+    if (mistakes.length === 0) {
+      container.innerHTML = '<div class="words-empty"><div class="words-empty-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2H2v10l9 5 9-5V2z"/><path d="M12 22V12M2 7l10 5 10-5"/></svg></div><h3>No Problem Words Yet</h3><p>The app tracks overused or basic vocabulary from your recordings.</p><p class="hint">Keep recording to identify words to practice!</p></div>';
+      return;
+    }
+
+    var html = '<div class="words-header"><h3>Words to Practice</h3><p>These words and phrases are commonly flagged in IELTS speaking. Try using more advanced vocabulary.</p></div>';
+    html += '<div class="words-grid">';
+    var self = this;
+    mistakes.forEach(function(item) {
+      var word = item[0];
+      var data = item[1];
+      html += '<div class="word-card"><div class="word-card-word">' + word + '</div><div class="word-card-meta"><span class="word-card-count">' + data.count + 'x</span>' + self.getWordBadge(word) + '</div></div>';
+    });
+    html += '</div>';
+
+    html += '<div class="words-advice"><h4>Better Alternatives</h4><table class="words-table"><thead><tr><th>Instead of...</th><th>Try...</th></tr></thead><tbody>';
+    html += this.getBetterAlternatives(mistakes.map(function(m) { return m[0]; }));
+    html += '</tbody></table></div>';
+
+    container.innerHTML = html;
+  }
+
+  /**
+   * Get badge for word type
+   */
+  getWordBadge(word) {
+    if (/\b(gonna|wanna|gotta)\b/.test(word)) return '<span class="badge-informal">Informal</span>';
+    if (/\b(um|uh)\b/.test(word)) return '<span class="badge-filler">Filler</span>';
+    if (/\b(very\s+)?(good|nice|great)\b/.test(word)) return '<span class="badge-basic">Basic</span>';
+    return '<span class="badge-repeated">Repeated</span>';
+  }
+
+  /**
+   * Get better alternatives table rows
+   */
+  getBetterAlternatives(mistakes) {
+    var alternatives = {
+      'good': '<strong>excellent</strong>, <strong>outstanding</strong>, <strong>exceptional</strong>',
+      'very good': '<strong>exceptional</strong>, <strong>remarkable</strong>, <strong>outstanding</strong>',
+      'nice': '<strong>pleasant</strong>, <strong>delightful</strong>, <strong>lovely</strong>',
+      'great': '<strong>wonderful</strong>, <strong>fantastic</strong>, <strong>tremendous</strong>',
+      'important': '<strong>crucial</strong>, <strong>essential</strong>, <strong>significant</strong>',
+      'a lot': '<strong>significantly</strong>, <strong>considerably</strong>, <strong>substantially</strong>',
+      'gonna': '<strong>going to</strong>, <strong>intend to</strong>, <strong>plan to</strong>',
+      'wanna': '<strong>want to</strong>, <strong>would like to</strong>, <strong>desire to</strong>',
+      'um': '<strong>pause briefly</strong> and think',
+      'uh': '<strong>pause briefly</strong> and think',
+      'you know': 'Use specific examples or explanations',
+      'like': 'Use more specific vocabulary',
+      'basically': '<strong>fundamentally</strong>, <strong>essentially</strong>, <strong>primarily</strong>',
+      'actually': '<strong>in fact</strong>, <strong>indeed</strong>, <strong>truly</strong>',
+      'there is': '<strong>there exists</strong>, <strong>there is a</strong>, <strong>there exists</strong>',
+      'there\'s': '<strong>there is</strong>, <strong>there exists</strong>'
+    };
+
+    var rows = [];
+    var self = this;
+    mistakes.forEach(function(word) {
+      var lower = word.toLowerCase();
+      if (alternatives[lower]) {
+        rows.push('<tr><td>' + word + '</td><td>' + alternatives[lower] + '</td></tr>');
+      }
+    });
+
+    if (rows.length === 0) {
+      return '<tr><td colspan="2" style="text-align:center;color:var(--text-muted)">No specific suggestions available</td></tr>';
+    }
+    return rows.join('');
+  }
 }
+
+// ==========================================
+// PWA INSTALL HANDLING
+// ==========================================
+var PWAInstall = {
+  deferredPrompt: null,
+  installShown: false,
+
+  init: function() {
+    window.addEventListener('beforeinstallprompt', (e) => {
+      e.preventDefault();
+      this.deferredPrompt = e;
+      this.showInstallUI();
+    });
+
+    window.addEventListener('appinstalled', () => {
+      this.deferredPrompt = null;
+      this.hideInstallUI();
+      this.showInstallSuccess();
+    });
+
+    if (window.matchMedia('(display-mode: standalone)').matches) {
+      this.markInstalled();
+    }
+
+    this.addInstallButtonToSettings();
+  },
+
+  showInstallUI: function() {
+    if (this.installShown) return;
+    this.installShown = true;
+
+    var banner = document.createElement('div');
+    banner.id = 'pwa-install-banner';
+    banner.innerHTML = '<div class="pwa-install-content"><div class="pwa-install-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 3v12m0 0l-4-4m4 4l4-4"/><path d="M20 12h-8"/></svg></div><div class="pwa-install-text"><strong>Install IELTS Speaking</strong><span>Use offline, access from home screen</span></div><div class="pwa-install-actions"><button class="btn btn-sm" id="pwa-install-btn">Install</button><button class="btn btn-ghost btn-sm" id="pwa-install-dismiss">Later</button></div></div>';
+
+    document.body.appendChild(banner);
+    this.addStyles();
+
+    document.getElementById('pwa-install-btn').addEventListener('click', () => this.install());
+    document.getElementById('pwa-install-dismiss').addEventListener('click', () => this.dismiss());
+  },
+
+  addStyles: function() {
+    if (document.getElementById('pwa-install-styles')) return;
+    var style = document.createElement('style');
+    style.id = 'pwa-install-styles';
+    style.textContent = '#pwa-install-banner{position:fixed;bottom:80px;left:50%;transform:translateX(-50%);z-index:1000;animation:slideUp 0.3s ease}@keyframes slideUp{from{opacity:0;transform:translateX(-50%) translateY(20px)}to{opacity:1;transform:translateX(-50%) translateY(0)}}.pwa-install-content{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:16px 20px;display:flex;align-items:center;gap:16px;box-shadow:0 8px 32px rgba(0,0,0,0.15);max-width:420px}.pwa-install-icon{width:48px;height:48px;background:var(--accent);border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0}.pwa-install-icon svg{width:24px;height:24px;color:white}.pwa-install-text{flex:1;display:flex;flex-direction:column;gap:4px}.pwa-install-text strong{font-size:0.95rem;color:var(--text)}.pwa-install-text span{font-size:0.8rem;color:var(--text-muted)}.pwa-install-actions{display:flex;gap:8px}@media(max-width:480px){.pwa-install-content{flex-direction:column;text-align:center;padding:20px}.pwa-install-actions{width:100%;justify-content:center}}';
+    document.head.appendChild(style);
+  },
+
+  install: function() {
+    if (!this.deferredPrompt) return;
+    this.deferredPrompt.prompt();
+    this.deferredPrompt.userChoice.then((choice) => {
+      this.deferredPrompt = null;
+      if (choice.outcome === 'accepted') {
+        this.markInstalled();
+      }
+    });
+  },
+
+  dismiss: function() {
+    this.installShown = false;
+    var banner = document.getElementById('pwa-install-banner');
+    if (banner) {
+      banner.style.animation = 'slideDown 0.3s ease';
+      setTimeout(() => banner.remove(), 300);
+    }
+    localStorage.setItem('pwa-install-dismissed', Date.now().toString());
+  },
+
+  hideInstallUI: function() {
+    var banner = document.getElementById('pwa-install-banner');
+    if (banner) banner.remove();
+  },
+
+  showInstallSuccess: function() {
+    console.log('PWA installed successfully');
+  },
+
+  markInstalled: function() {
+    document.body.classList.add('pwa-installed');
+    localStorage.setItem('pwa-installed', 'true');
+  },
+
+  addInstallButtonToSettings: function() {
+    setTimeout(() => {
+      var dataSection = document.querySelector('.settings-card:nth-child(6)');
+      if (dataSection) {
+        var installBtn = document.createElement('button');
+        installBtn.className = 'btn btn-secondary btn-sm';
+        installBtn.id = 'pwa-settings-install';
+        installBtn.innerHTML = '<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3v12m0 0l-4-4m4 4l4-4"/><path d="M18 12h-6"/></svg> Install App';
+        installBtn.addEventListener('click', () => this.install());
+        dataSection.appendChild(installBtn);
+      }
+    }, 100);
+  }
+};
+
+// Preload Manager for next card prediction
+var PreloadManager = {
+  currentCard: null,
+  currentPart: null,
+
+  init: function() {
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.addEventListener('message', (event) => {
+        if (event.data.type === 'PRELOAD_UPDATED') {
+          this.onPreloadUpdate(event.data);
+        } else if (event.data.type === 'RECORDING_CACHED') {
+          this.onRecordingCached(event.data);
+        }
+      });
+    }
+  },
+
+  updatePreload: function(cardId, part) {
+    this.currentCard = cardId;
+    this.currentPart = part;
+
+    if ('serviceWorker' in navigator && navigator.serviceWorker.controller) {
+      navigator.serviceWorker.controller.postMessage({
+        type: 'UPDATE_PRELOAD',
+        currentId: cardId,
+        part: part
+      });
+    }
+
+    localStorage.setItem('currentCard', JSON.stringify({
+      id: cardId,
+      part: part,
+      timestamp: Date.now()
+    }));
+  },
+
+  onPreloadUpdate: function(data) {
+    console.log('Next card preloaded:', data.nextId);
+  },
+
+  onRecordingCached: function(data) {
+    console.log('Recording cached:', data.id);
+  }
+};
+
+// Session Cache Manager for offline access
+var SessionCacheManager = {
+  init: function() {
+    this.loadCachedSessions();
+  },
+
+  cacheCurrentSession: function() {
+    var session = {
+      id: 'session-' + Date.now(),
+      timestamp: new Date().toISOString(),
+      cardId: window.App ? window.App.currentItems[window.App.currentIndex]?.id : null,
+      part: window.App ? window.App.currentPart : null,
+      progress: window.App ? {
+        vocabulary: window.App.vocabulary.length,
+        recordings: window.App.recordings.length
+      } : {}
+    };
+
+    if ('serviceWorker' in navigator && navigator.serviceWorker.controller) {
+      navigator.serviceWorker.controller.postMessage({
+        type: 'CACHE_SESSION',
+        session: session
+      });
+    }
+
+    var sessions = JSON.parse(localStorage.getItem('cachedSessions') || '[]');
+    sessions.push(session);
+    if (sessions.length > 20) sessions = sessions.slice(-20);
+    localStorage.setItem('cachedSessions', JSON.stringify(sessions));
+  },
+
+  loadCachedSessions: function() {
+    return JSON.parse(localStorage.getItem('cachedSessions') || '[]');
+  }
+};
 
 // ==========================================
 // INITIALIZE APPLICATION
 // ==========================================
 
-// Register Service Worker for PWA
+window.addEventListener('DOMContentLoaded', () => {
+  PWAInstall.init();
+  PreloadManager.init();
+  SessionCacheManager.init();
+});
+
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', function() {
     navigator.serviceWorker.register('sw.js').then(function(registration) {
-      // SW registered
+      console.log('Service Worker registered:', registration.scope);
     }).catch(function(err) {
-      // SW registration failed
+      console.log('Service Worker registration failed:', err);
     });
   });
 }

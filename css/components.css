@@ -192,6 +192,11 @@
   color: var(--text-primary);
 }
 
+[data-theme="dark"] .mobile-nav-item.active {
+  background: rgba(79, 70, 229, 0.1);
+  border-radius: var(--radius-md);
+}
+
 /* --- Main Content --- */
 .main-content {
   margin-left: var(--sidebar-width);
@@ -238,6 +243,43 @@
   opacity: 0.5;
   cursor: not-allowed;
   transform: none;
+}
+
+.btn-primary:active {
+  transform: scale(0.95);
+  box-shadow: 0 2px 4px rgba(79, 70, 229, 0.3);
+}
+
+.btn-secondary:active,
+.btn-ghost:active {
+  transform: scale(0.98);
+}
+
+/* Button Loading State */
+.btn.loading {
+  position: relative;
+  color: transparent !important;
+  pointer-events: none;
+}
+
+.btn.loading::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 16px;
+  height: 16px;
+  margin: -8px 0 0 -8px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 600ms linear infinite;
+}
+
+.btn.loading.btn-secondary::after,
+.btn.loading.btn-ghost::after {
+  border-color: var(--accent-light);
+  border-top-color: var(--accent);
 }
 
 .btn svg {
@@ -329,6 +371,40 @@
 .card:hover {
   border-color: var(--border-hover);
   box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+/* Card Shine Effect on Hover */
+.card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: var(--radius-lg);
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.1) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  opacity: 0;
+  transition: opacity var(--transition-base);
+  pointer-events: none;
+}
+
+[data-theme="dark"] .card::after {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.03) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+}
+
+.card:hover::after {
+  opacity: 1;
 }
 
 /* --- Topic Cards --- */
@@ -357,7 +433,7 @@
 .topic-card:hover {
   border-color: var(--accent);
   box-shadow: var(--shadow-md);
-  transform: translateY(-2px);
+  transform: translateY(-3px);
 }
 
 .topic-card:hover::before {
@@ -423,12 +499,20 @@
   background: var(--warning-light);
 }
 
+[data-theme="dark"] .bookmark-btn:hover {
+  background: rgba(245, 158, 11, 0.15);
+}
+
 .bookmark-btn.active {
   color: var(--warning);
 }
 
 .bookmark-btn.active:hover {
   background: var(--warning-light);
+}
+
+[data-theme="dark"] .bookmark-btn.active:hover {
+  background: rgba(245, 158, 11, 0.15);
 }
 
 /* Practiced card state */
@@ -701,15 +785,19 @@ input[type="number"] { -moz-appearance: textfield; }
 .practice-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.5);
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
   z-index: 200;
   display: none;
   align-items: center;
   justify-content: center;
   padding: var(--space-4);
   animation: fadeIn var(--transition-base) ease-out;
+}
+
+[data-theme="dark"] .practice-overlay {
+  background: rgba(0, 0, 0, 0.75);
 }
 
 .practice-overlay.active {
@@ -724,8 +812,34 @@ input[type="number"] { -moz-appearance: textfield; }
   max-height: 90vh;
   overflow-y: auto;
   box-shadow: var(--shadow-xl);
-  animation: fadeScale var(--transition-base) ease-out;
+  animation: modalEnter var(--transition-base) ease-out;
   position: relative;
+}
+
+@keyframes modalEnter {
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes modalExit {
+  from {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.95) translateY(10px);
+  }
+}
+
+.practice-modal.closing {
+  animation: modalExit var(--transition-fast) ease-in forwards;
 }
 
 .practice-header {
@@ -892,11 +1006,19 @@ input[type="number"] { -moz-appearance: textfield; }
   background: var(--danger-light);
 }
 
+[data-theme="dark"] .record-btn:hover {
+  background: rgba(239, 68, 68, 0.15);
+}
+
 .record-btn.recording {
   border-color: var(--danger);
   color: var(--danger);
   background: var(--danger-light);
   animation: pulse 1s ease-in-out infinite;
+}
+
+[data-theme="dark"] .record-btn.recording {
+  background: rgba(239, 68, 68, 0.15);
 }
 
 .record-indicator {
@@ -1110,6 +1232,11 @@ input[type="number"] { -moz-appearance: textfield; }
   display: grid;
   grid-template-columns: 1fr;
   gap: var(--space-3);
+}
+
+/* Stagger animation for topic grids */
+.topic-grid.stagger-grid > * {
+  animation: fadeUp 300ms ease-out both;
 }
 
 /* Difficulty Rating */
@@ -1485,6 +1612,11 @@ input[type="number"] { -moz-appearance: textfield; }
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.05em;
+}
+
+[data-theme="dark"] .live-transcript-header {
+  background: rgba(16, 185, 129, 0.15);
+  border-bottom-color: rgba(16, 185, 129, 0.25);
 }
 
 .live-transcript-header svg {
@@ -1937,6 +2069,77 @@ input[type="number"] { -moz-appearance: textfield; }
     flex-direction: column;
   }
 
+  /* Touch-friendly buttons */
+  .btn {
+    min-height: 44px;
+    min-width: 44px;
+    padding: var(--space-3) var(--space-4);
+  }
+
+  .btn-sm {
+    min-height: 36px;
+    min-width: 36px;
+  }
+
+  /* Touch-friendly nav items */
+  .mobile-nav-item,
+  .nav-item {
+    min-height: 48px;
+    min-width: 48px;
+    padding: var(--space-3);
+  }
+
+  /* Touch-friendly cards */
+  .topic-card,
+  .card {
+    min-height: 72px;
+  }
+
+  /* Touch-friendly inputs */
+  input,
+  textarea,
+  select {
+    min-height: 44px;
+  }
+
+  .criteria-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .practice-modal {
+    max-height: 95vh;
+    border-radius: var(--radius-lg);
+  }
+
+  .practice-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .practice-actions-left,
+  .practice-actions-right {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .practice-header {
+    flex-wrap: wrap;
+    gap: var(--space-3);
+  }
+
+  /* Improve modal close button touch target */
+  .practice-close,
+  .shortcuts-btn {
+    min-width: 44px;
+    min-height: 44px;
+  }
+
+  /* Improve toggle switches touch target */
+  .toggle {
+    min-width: 48px;
+    min-height: 28px;
+  }
+
   .criteria-grid {
     grid-template-columns: 1fr;
   }
@@ -1971,4 +2174,43 @@ input[type="number"] { -moz-appearance: textfield; }
 
   h1 { font-size: 1.5rem; }
   .page-header h1 { font-size: 1.35rem; }
+
+  /* Larger touch targets for very small screens */
+  .btn {
+    padding: var(--space-4) var(--space-5);
+  }
+
+  /* Improve filter buttons on small screens */
+  .filter-btn,
+  .tag-chip {
+    min-height: 40px;
+    padding: var(--space-2) var(--space-3);
+  }
+
+  /* Improve search input on small screens */
+  .search-input {
+    min-height: 48px;
+  }
+
+  /* Improve modal padding on small screens */
+  .practice-body {
+    padding: var(--space-4);
+  }
+}
+
+/* Extra large touch targets for accessibility */
+@media (pointer: coarse) {
+  .btn,
+  .nav-item,
+  .mobile-nav-item,
+  .topic-card,
+  input,
+  textarea,
+  select {
+    min-height: 48px;
+  }
+
+  .toggle {
+    min-height: 32px;
+  }
 }

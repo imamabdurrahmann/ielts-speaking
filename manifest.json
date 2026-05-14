@@ -2,24 +2,90 @@
   "name": "IELTS Speaking Practice",
   "short_name": "IELTS Speak",
   "description": "Master IELTS Speaking with Makkar Jan-April 2026 cue cards",
-  "start_url": "index.html",
+  "start_url": "./index.html",
   "display": "standalone",
   "background_color": "#FAFBFC",
   "theme_color": "#4F46E5",
   "orientation": "portrait-primary",
+  "scope": "./",
+  "lang": "en",
+  "dir": "ltr",
+  "categories": ["education", "productivity"],
   "icons": [
     {
-      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'%3E%3Crect width='192' height='192' rx='32' fill='%234F46E5'/%3E%3Ccircle cx='96' cy='96' r='40' fill='none' stroke='white' stroke-width='8'/%3E%3Ccircle cx='96' cy='96' r='12' fill='white'/%3E%3Cpath d='M60 78v36a8 8 0 008 8h48a8 8 0 008-8v-36' fill='none' stroke='white' stroke-width='8' stroke-linecap='round'/%3E%3C/svg%3E",
+      "src": "icons/icon-192.svg",
       "sizes": "192x192",
-      "type": "image/svg+xml"
+      "type": "image/svg+xml",
+      "purpose": "any"
     },
     {
-      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='64' fill='%234F46E5'/%3E%3Ccircle cx='256' cy='256' r='100' fill='none' stroke='white' stroke-width='16'/%3E%3Ccircle cx='256' cy='256' r='32' fill='white'/%3E%3Cpath d='M160 208v96a20 20 0 0020 20h128a20 20 0 0020-20v-96' fill='none' stroke='white' stroke-width='16' stroke-linecap='round'/%3E%3C/svg%3E",
+      "src": "icons/icon-512.svg",
       "sizes": "512x512",
-      "type": "image/svg+xml"
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "icons/maskable-icon.svg",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "maskable"
     }
   ],
-  "categories": ["education", "productivity"],
-  "lang": "en",
-  "dir": "ltr"
+  "screenshots": [],
+  "shortcuts": [
+    {
+      "name": "Start Part 1 Practice",
+      "short_name": "Part 1",
+      "description": "Practice Part 1 Introduction questions",
+      "url": "./#part1",
+      "icons": [
+        {
+          "src": "icons/icon-96.svg",
+          "sizes": "96x96",
+          "type": "image/svg+xml"
+        }
+      ]
+    },
+    {
+      "name": "Start Part 2 Practice",
+      "short_name": "Part 2",
+      "description": "Practice Part 2 Long Turn cue cards",
+      "url": "./#part2",
+      "icons": [
+        {
+          "src": "icons/icon-96.svg",
+          "sizes": "96x96",
+          "type": "image/svg+xml"
+        }
+      ]
+    },
+    {
+      "name": "Start Part 3 Practice",
+      "short_name": "Part 3",
+      "description": "Practice Part 3 Discussion topics",
+      "url": "./#part3",
+      "icons": [
+        {
+          "src": "icons/icon-96.svg",
+          "sizes": "96x96",
+          "type": "image/svg+xml"
+        }
+      ]
+    },
+    {
+      "name": "View Statistics",
+      "short_name": "Stats",
+      "description": "View your practice statistics",
+      "url": "./#stats",
+      "icons": [
+        {
+          "src": "icons/icon-96.svg",
+          "sizes": "96x96",
+          "type": "image/svg+xml"
+        }
+      ]
+    }
+  ],
+  "related_applications": [],
+  "prefer_related_applications": false
 }

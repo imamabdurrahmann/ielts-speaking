@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 180">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#6366F1"/>
+      <stop offset="100%" style="stop-color:#4F46E5"/>
+    </linearGradient>
+  </defs>
+  <!-- Background -->
+  <rect width="180" height="180" rx="32" fill="url(#bgGrad)"/>
+  <!-- Microphone icon representing speaking -->
+  <path d="M90 36 C122 36 146 60 146 88 L146 116 C146 144 122 168 90 168 C58 168 34 144 34 116 L34 88 C34 60 58 36 90 36 Z" fill="white"/>
+  <path d="M62 88 L62 116 C62 130 74 144 90 144 C106 144 118 130 118 116 L118 88" fill="none" stroke="#4F46E5" stroke-width="8" stroke-linecap="round"/>
+  <rect x="62" y="116" width="56" height="40" rx="6" fill="white"/>
+  <line x1="90" y1="156" x2="90" y2="180" stroke="white" stroke-width="8" stroke-linecap="round"/>
+  <line x1="68" y1="180" x2="112" y2="180" stroke="white" stroke-width="8" stroke-linecap="round"/>
+  <!-- Sound waves -->
+  <path d="M20 90 Q32 78 32 90 Q32 102 20 90" fill="none" stroke="white" stroke-width="4" stroke-linecap="round" opacity="0.7"/>
+  <path d="M148 90 Q136 78 136 90 Q136 102 148 90" fill="none" stroke="white" stroke-width="4" stroke-linecap="round" opacity="0.7"/>
+</svg>
